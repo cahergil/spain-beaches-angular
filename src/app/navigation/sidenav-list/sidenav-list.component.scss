@@ -1,0 +1,31 @@
+a {
+  text-decoration: none;
+  color: white;
+
+}
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+
+.nav-caption {
+  display: inline-block;
+  padding-left: 16px;
+}
+
+/* because <a> have 16px and button by default 14px */
+button {
+  font-size: 16px;
+}
+
+/* normal fa style is 16px(at least for this icon) mat-icon is 24px */
+.fa-lg {
+   font-size: 24px;
+}
+
+/* so that fontawesome aligns horizontally with the span, would be better perhaps to apply
+it only to the fontawesome icon */
+mat-icon {
+  height: auto;
+}

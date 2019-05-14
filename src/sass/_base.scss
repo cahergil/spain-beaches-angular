@@ -1,0 +1,44 @@
+
+$color-grey-light-1: #faf9f9;
+$color-grey-light-2: #f4f2f2;
+$color-grey-light-3: #f0eeee;
+$color-grey-light-4: #ccc;
+$color-grey-dark-1: #333;
+$color-grey-dark-2: #777;
+$color-grey-dark-3: #999;
+
+$color-white: #fff;
+$color-black: #000;
+
+
+$font-display: 'Roboto', sans-serif;
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit; //inherit from html
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+  @include respond(phone) { // 1rem = 8 pixel,  < 600px
+    font-size: 50%;
+  }
+
+  @include respond(tab-port) { // 1rem = 8 pixel,  width < 900px
+      font-size: 50%;
+  }
+
+  @include respond(tab-land) { // 1rem = 9px 9/16=56.25%, width < 1200px
+      font-size: 56.25%;
+  }
+
+  @include respond(big-desktop) { // 1rem = 12px, width < 1800
+      font-size: 75%;
+  }
+
+}

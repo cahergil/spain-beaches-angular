@@ -1,0 +1,15 @@
+@import '../../../sass/styles.scss';
+
+#mapdiv {
+  width: 100vw;
+  height: 70vh;
+}
+
+.map__header {
+  font-family: $font-display;
+  font-weight: 300;
+  text-align: center;
+  font-size: 5rem;
+  margin: 2rem;
+  color: $color-grey-dark-3;
+}

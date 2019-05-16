@@ -12,6 +12,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AmChartsModule } from '@amcharts/amcharts3-angular';
 import { AmChartsService } from '@amcharts/amcharts3-angular';
 import { MapComponent } from './landing-page/map/map.component';
+import { MapResultsComponent } from './landing-page/map-results/map-results.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { HttpClientModule } from '@angular/common/http';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/app.reducers';
 
 
 @NgModule({
@@ -20,7 +29,8 @@ import { MapComponent } from './landing-page/map/map.component';
     SidenavListComponent,
     HeaderComponent,
     LandingPageComponent,
-    MapComponent
+    MapComponent,
+    MapResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +38,17 @@ import { MapComponent } from './landing-page/map/map.component';
     MaterialModule,
     AppRoutingModule,
     FlexLayoutModule,
-    AmChartsModule
+    AmChartsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
+    HttpClientModule,
+    StoreModule.forRoot(reducers),
+    !environment.production ? StoreDevtoolsModule.instrument({
+      maxAge: 10
+    }) : []
+
   ],
-  providers: [AmChartsService],
+  providers: [AmChartsService, AngularFireDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

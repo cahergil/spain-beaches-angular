@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   title = 'playas-angular';
   private list: any[] = [];
   // private jsonUrl = 'https://www.dropbox.com/s/c0up0ug1x4gxv87/playas.json?dl=1'
-  private jsonUrl = './../assets/playas.json';
+  private jsonUrl = './assets/playas.json';
 
   constructor(private httpClient: HttpClient) { }
 

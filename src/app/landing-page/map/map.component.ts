@@ -75,8 +75,16 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     const region = this.mapComunidades.get(e.mapObject.id);
     this.zone.run(() => {
 
-      this.router.navigate([region], { relativeTo: this.route})
-    })
+      this.router.navigate([region], { relativeTo: this.route })
+        .then(success => {
+          console.log('router.navigate', success);
+          const resultId = document.getElementById('results');
+          console.log(resultId);
+          resultId.scrollIntoView({behavior: 'smooth'});
+
+        })
+
+    });
   }
   ngOnDestroy() {
     if (this.chart) {

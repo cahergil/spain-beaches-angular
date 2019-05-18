@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  selectedRegion: string;
 
 
   constructor() { }

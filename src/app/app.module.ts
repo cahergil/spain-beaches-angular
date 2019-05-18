@@ -13,10 +13,9 @@ import { AmChartsModule } from '@amcharts/amcharts3-angular';
 import { AmChartsService } from '@amcharts/amcharts3-angular';
 import { MapComponent } from './landing-page/map/map.component';
 import { MapResultsComponent } from './landing-page/map-results/map-results.component';
-import { AngularFireModule } from '@angular/fire';
+
 import { environment } from '../environments/environment';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireDatabase } from '@angular/fire/database';
+
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
@@ -39,8 +38,6 @@ import { reducers } from './store/app.reducers';
     AppRoutingModule,
     FlexLayoutModule,
     AmChartsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireStorageModule,
     HttpClientModule,
     StoreModule.forRoot(reducers),
     !environment.production ? StoreDevtoolsModule.instrument({
@@ -48,7 +45,7 @@ import { reducers } from './store/app.reducers';
     }) : []
 
   ],
-  providers: [AmChartsService, AngularFireDatabase],
+  providers: [AmChartsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

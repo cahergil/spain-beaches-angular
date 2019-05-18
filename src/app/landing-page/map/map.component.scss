@@ -1,5 +1,9 @@
 @import '../../../sass/styles.scss';
 
+#map {
+  background-color: burlywood;
+}
+
 #mapdiv {
   width: 100vw;
   height: 70vh;
@@ -10,6 +14,6 @@
   font-weight: 300;
   text-align: center;
   font-size: 5rem;
-  margin: 2rem;
+  padding: 2rem 0rem;
   color: $color-grey-dark-2;
 }

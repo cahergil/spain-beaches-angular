@@ -1,26 +1,13 @@
-import * as StoreActions from './app.actions';
+import * as fromMapResults from '../landing-page/map-results/map-results.reducers';
+import * as fromLandingPage from '../landing-page/landing-page.reducers';
+import { ActionReducerMap } from '@ngrx/store';
 
-export interface State  {
-  playas: any[];
+export interface AppState {
+  beachesRegionList: fromMapResults.State;
+  beachesList: fromLandingPage.State;
 }
 
-
-const initialState: State = {
-  playas: []
+export const reducers: ActionReducerMap<AppState> = {
+  beachesRegionList: fromMapResults.mapResultsreducers,
+  beachesList: fromLandingPage.landingPageReducers
 }
-
-export function reducers(state = initialState, action: StoreActions.StoreActions) {
-
-  switch (action.type) {
-    case StoreActions.SET_BEACHES:
-      return {
-        ...state,
-        playas: action.payload
-      };
-    default: return state;
-  }
-
-
-}
-
-

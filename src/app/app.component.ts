@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import jsonfile from './../assets/playas.json';
-
+import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import * as fromLandingPageReducer from './landing-page/landing-page.reducers';
+import * as fromActions from './landing-page/landing-page.actions';
+import { Playa } from './playas.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,28 +11,22 @@ import jsonfile from './../assets/playas.json';
 })
 export class AppComponent implements OnInit {
   title = 'playas-angular';
-  private list: any[] = [];
-  // private jsonUrl = 'https://www.dropbox.com/s/c0up0ug1x4gxv87/playas.json?dl=1'
+  private list: Playa[] = [];
   private jsonUrl = './assets/playas.json';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private store: Store<fromLandingPageReducer.State>) { }
 
   ngOnInit() {
 
 
     this.httpClient.get(this.jsonUrl).subscribe((response: any) => {
 
-      let keys = Object.keys(response);
+      const keys = Object.keys(response);
       keys.forEach(element => {
         const obj = response[element];
         this.list.push(obj);
       });
-      // this.list = this.list.slice(0, 5);
-      console.log(this.list);
-
-      // this.httpClient.put('https://playas-espana.firebaseio.com/playas.json', this.list).subscribe(result => {
-      //   console.log(result);
-      // })
+      this.store.dispatch(new fromActions.SetBeaches(this.list));
 
     }, err => {
       console.log(err);

@@ -4,7 +4,9 @@
 
   </div>
   <div class="results__content">
-    <button (click)="onRequest()">Galicia</button>
+    <div *ngFor="let item of regionList">
+      {{item.nombre}}
+    </div>
     <!-- <div *ngIf="items$ | async; let items; else loading">
       <ul>
         <li *ngFor="let item of items">

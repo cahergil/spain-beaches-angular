@@ -10,7 +10,7 @@ export class Playa {
   public nombre: string;
   public nombre_alternativo: string;
   public nombre_alternativo_2: string;
-  public descripción: string;
+  public descripcion: string;
   public longitud: string;
   public anchura: string;
   public variacion_anchura: string;

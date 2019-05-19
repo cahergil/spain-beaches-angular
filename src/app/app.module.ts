@@ -20,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.reducers';
+import { MapResultsItemComponent } from './landing-page/map-results/map-results-item/map-results-item.component';
+
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { reducers } from './store/app.reducers';
     HeaderComponent,
     LandingPageComponent,
     MapComponent,
-    MapResultsComponent
+    MapResultsComponent,
+    MapResultsItemComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { reducers } from './store/app.reducers';
     StoreModule.forRoot(reducers),
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 10
-    }) : []
+    }) : [],
+
 
   ],
   providers: [AmChartsService],

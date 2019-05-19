@@ -8,7 +8,32 @@
   padding-top: 5rem;
   font-family: $font-display;
   font-size: 3rem;
-  margin: 2rem;
+  margin-bottom: 2rem;
   color: $color-black;
   text-align: center;
+  &-number {
+    font-style: italic;
+    color: $color-grey-dark-2
+  }
+  &-region {
+    color: $color-grey-dark-2
+  }
+}
+.results__search {
+  text-align: center;
+  &-title {
+    font-family: $font-display;
+    font-size: 2rem;
+    color: $color-grey-dark-2;
+    margin-bottom: 2rem;
+  }
+  &-input {
+    font-family: $font-display;
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+.wrapper {
+  margin: 0 auto;
 }

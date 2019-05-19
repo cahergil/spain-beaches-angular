@@ -15,7 +15,7 @@ import { Playa } from 'src/app/playas.model';
 })
 export class MapResultsComponent implements OnInit, OnDestroy {
 
-  private region: string;
+  public region: string;
   private CONST_REGION = 'region';
   // private beachesListObservable: Observable<{beaches: Playa[]}>;
   private subscription: Subscription;
@@ -34,6 +34,7 @@ export class MapResultsComponent implements OnInit, OnDestroy {
           .subscribe(results => {
             this.regionList = results.beaches.filter(el => el.comunidad_autonoma === this.region
             );
+            this.regionList = this.regionList.splice(0, 6);
             console.log(this.regionList);
           });
 

@@ -1,22 +1,30 @@
 <section id="results">
   <div class="results__header">
-  Number of beaches
+  <span class="results__header-number">{{regionList.length}}</span> beaches in <span class="results__header-region">{{region}}</span>
 
   </div>
-  <div class="results__content">
-    <div *ngFor="let item of regionList">
-      {{item.nombre}}
-    </div>
-    <!-- <div *ngIf="items$ | async; let items; else loading">
-      <ul>
-        <li *ngFor="let item of items">
-          {{ item.payload.val().text }}
-          <code>{{ item.payload.key }}</code>
-        </li>
-      </ul>
-      <div *ngIf="items.length === 0">No results, try clearing filters</div>
-    </div>
-    <ng-template #loading>Loading&hellip;</ng-template> -->
+  <div class="results__search">
+    <div class="results__search-title">Narrow your search by beach name</div>
+    <form >
+      <mat-form-field class="results__search-input" style="text-align: center">
+        <input matInput placeholder="search beach" value="Sushi">
+      </mat-form-field>
+    </form>
+  </div>
 
+  <div
+    class="wrappe"
+    >
+
+
+    <div
+      gdColumns="repeat(auto-fit, minmax(30rem, 1fr)"
+      gdGap="3rem"
+      class="results__content">
+
+        <div gdGridAlign="center" *ngFor="let item of regionList">
+          <app-map-results-item  [beachItem]="item"></app-map-results-item>
+        </div>
+    </div>
   </div>
 </section>

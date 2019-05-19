@@ -21,6 +21,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.reducers';
 import { MapResultsItemComponent } from './landing-page/map-results/map-results-item/map-results-item.component';
+import { ShortenPipe } from './landing-page/map-results/map-results-item/shorten.pipe';
+import { ImageFallbackDirective} from './directives/image-preload.directive'
 
 
 
@@ -32,7 +34,10 @@ import { MapResultsItemComponent } from './landing-page/map-results/map-results-
     LandingPageComponent,
     MapComponent,
     MapResultsComponent,
-    MapResultsItemComponent
+    MapResultsItemComponent,
+    ShortenPipe,
+    ImageFallbackDirective
+
   ],
   imports: [
     BrowserModule,

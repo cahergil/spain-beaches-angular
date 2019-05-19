@@ -1,13 +1,27 @@
 <mat-card class="card">
   <mat-card-header>
     <!-- <div mat-card-avatar class="example-header-image"></div> -->
-    <mat-card-title>{{ beachItem.nombre }}</mat-card-title>
-    <mat-card-subtitle>{{ beachItem.termino_municipal}}</mat-card-subtitle>
+    <mat-card-title
+      matTooltip="beach name"
+      matTooltipPosition="right"
+      >
+      {{ beachItem.nombre | shorten:23 }}
+    </mat-card-title>
+    <mat-card-subtitle
+      matTooltip="town, city"
+      matTooltipPosition="right">
+      {{ beachItem.termino_municipal}}
+    </mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="{{images[1]}}" class="image" alt="Photo of a Shiba Inu">
-  <mat-card-content>
+  <img
+    mat-card-image
+    src="{{images[images.length -1]}}"
+    appFallbackSrc="{{defautImagePath}}"
+    class="image"
+    alt="Photo of a Shiba Inu">
+  <mat-card-content >
     <p>
-      {{ beachItem.descripcion }}
+      {{ beachItem.descripcion | shorten:170 }}
     </p>
   </mat-card-content>
   <mat-card-actions>

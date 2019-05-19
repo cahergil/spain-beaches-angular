@@ -34,7 +34,7 @@ export class MapResultsComponent implements OnInit, OnDestroy {
           .subscribe(results => {
             this.regionList = results.beaches.filter(el => el.comunidad_autonoma === this.region
             );
-            this.regionList = this.regionList.splice(0, 6);
+            // this.regionList = this.regionList.splice(0, 6);
             console.log(this.regionList);
           });
 

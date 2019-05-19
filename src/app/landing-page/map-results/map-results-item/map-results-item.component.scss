@@ -5,5 +5,10 @@
 }
 
 .image {
-  width: 100%;
+  width: 300px
+}
+
+mat-card-content {
+  min-height: 9rem;
+  max-height: 9rem;
 }

@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSelectModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ScrollDispatchModule
 
   ],
   exports: [
@@ -52,7 +54,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSelectModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ScrollDispatchModule
   ]
 })
 export class MaterialModule { }

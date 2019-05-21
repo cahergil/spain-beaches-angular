@@ -22,7 +22,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.reducers';
 import { MapResultsItemComponent } from './landing-page/map-results/map-results-item/map-results-item.component';
 import { ShortenPipe } from './landing-page/map-results/map-results-item/shorten.pipe';
-import { ImageFallbackDirective} from './directives/image-preload.directive'
+import { ImageFallbackDirective } from './directives/image-preload.directive';
 
 
 
@@ -38,6 +38,7 @@ import { ImageFallbackDirective} from './directives/image-preload.directive'
     ShortenPipe,
     ImageFallbackDirective
 
+
   ],
   imports: [
     BrowserModule,
@@ -51,7 +52,6 @@ import { ImageFallbackDirective} from './directives/image-preload.directive'
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 10
     }) : [],
-
 
   ],
   providers: [AmChartsService],

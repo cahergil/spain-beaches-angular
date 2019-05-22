@@ -23,6 +23,7 @@ export class MapResultsComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   public regionList: Playa[] = [];
   public regionListScroll: Playa[] = [];
+  private isLockOpen = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +35,11 @@ export class MapResultsComponent implements OnInit, OnDestroy {
     this.scrollDispatcher.scrolled().subscribe((x: CdkScrollable) => {
       const val = x.measureScrollOffset('bottom');
       if (val < 100) {
-        this.onScroll();
+        if (this.isLockOpen) {
+          this.isLockOpen = false;
+          console.log('insideScrolled');
+          this.onScroll();
+        }
       }
     });
 
@@ -68,6 +73,7 @@ export class MapResultsComponent implements OnInit, OnDestroy {
     this.regionListScroll = [...this.regionListScroll, ...this.regionList.slice(this.start, this.end)];
     setTimeout(() => {
       this.ref.detectChanges();
+      this.isLockOpen = true;
     }, 500);
     this.start = this.end;
     this.end += this.step;

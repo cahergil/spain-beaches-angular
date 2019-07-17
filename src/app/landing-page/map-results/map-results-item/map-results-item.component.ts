@@ -8,7 +8,8 @@ import { Playa } from 'src/app/playas.model';
 })
 export class MapResultsItemComponent implements OnInit {
   @Input() beachItem: Playa;
-  public defautImagePath = '../../../../assets/images/image_na.png';
+  public defautImagePath = './assets/images/image_na.png';
+  public banderaAzulPath = './assets/images/blue_flag_mini.png';
   public images: string[] = [];
   constructor() { }
 

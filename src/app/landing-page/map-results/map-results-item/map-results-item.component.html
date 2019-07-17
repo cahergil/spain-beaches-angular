@@ -1,6 +1,12 @@
 <mat-card class="card">
   <mat-card-header>
-    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+    <img
+    mat-card-avatar
+    [src]="banderaAzulPath"
+    *ngIf="beachItem.bandera_azul==='Sí'"
+    matTooltip="blue flag beach"
+    matTooltipPosition="above"
+    >
     <mat-card-title
       matTooltip="beach name"
       matTooltipPosition="right"
@@ -8,7 +14,7 @@
       {{ beachItem.nombre | shorten:21 }}
     </mat-card-title>
     <mat-card-subtitle
-      matTooltip="town, city"
+      matTooltip="locality (town, city)"
       matTooltipPosition="right">
       {{ beachItem.termino_municipal}}
     </mat-card-subtitle>

@@ -59,10 +59,18 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         ]
       },
       areasSettings: {
+        outlineColor: '#fff',
+        outlineAlpha: 1,
+        outlineThickness: 1,
         autoZoom: false,
-        selectedColor: '#CC0000',
+        selectedColor: '#D4AC16',
         selectable: true,
-        // rollOverColor: "#009ce0"
+        rollOverColor: '#D4AC16'
+      },
+      zoomControl: {
+        homeButtonEnabled: false,
+        zoomControlEnabled: false,
+        panControlEnabled: false,
       },
     });
     this.chart.addListener('clickMapObject', this.handleRegionClick);

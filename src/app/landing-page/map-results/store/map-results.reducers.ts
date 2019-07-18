@@ -1,5 +1,5 @@
 import * as MapResultsActions from './map-results.actions';
-import { Playa } from '../../playas.model';
+import { Playa } from '../../../playas.model';
 
 export interface State {
   beachesRegion: Playa[];

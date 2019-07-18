@@ -88,9 +88,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
           console.log('router.navigate', success);
           const resultId = document.getElementById('results');
           console.log(resultId);
-          resultId.scrollIntoView({behavior: 'smooth'});
+          resultId.scrollIntoView({ behavior: 'smooth' });
 
-        })
+        });
 
     });
   }

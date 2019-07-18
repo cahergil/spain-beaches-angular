@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Playa } from '../playas.model';
+import { Playa } from '../../playas.model';
 export const SET_BEACHES = 'SET_BEACHES';
 
 

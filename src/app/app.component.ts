@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import * as fromLandingPageReducer from './landing-page/landing-page.reducers';
-import * as fromActions from './landing-page/landing-page.actions';
+import * as fromLandingPageReducer from './landing-page/store/landing-page.reducers';
+import * as fromActions from './landing-page/store/landing-page.actions';
 import { Playa } from './playas.model';
 @Component({
   selector: 'app-root',

@@ -1,0 +1,42 @@
+@import '../../../../../theme_beaches.scss';
+
+.card {
+  width: 35rem;
+
+
+}
+.cardHeaderPrimaryBackgroundColor {
+  background-color: #074c82;
+}
+.cardHeaderAccentBackgroundColor {
+  background-color: #FABC3D;
+}
+
+.cardTitleBlueFlag {
+  font-size: 1rem
+}
+
+.cardTitleNoBlueFlag {
+  font-size: 1rem
+}
+
+.cardSubTitleBlueFlagColor {
+  color: #3DABEE
+}
+
+.cardSubTitleNoBlueFlagColor {
+  color: #976703
+}
+
+
+.image {
+  width: 35rem;
+  height: 22.5rem;
+  object-fit: cover;
+}
+
+mat-card-content {
+  min-height: 9rem;
+  max-height: 9rem;
+}
+

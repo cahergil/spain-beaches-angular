@@ -1,27 +1,17 @@
 <section id="results">
-  <div class="results__header">
-    <span class="results__header-number">{{regionList.length}}</span> beaches in <span class="results__header-region">{{region}}</span>
-
-  </div>
-
-  <div class="results__search">
-    <div class="results__search-title">Narrow your search by beach name</div>
-    <form >
-      <mat-form-field class="results__search-input" style="text-align: center">
-        <input matInput placeholder="search beach" value="Sushi">
-      </mat-form-field>
-    </form>
-  </div>
-
-  <div
-    class="results__content"
-    gdColumns="repeat(auto-fit, minmax(30rem, 1fr)"
-    gdGap="3rem"
-    cdkScrollable
+  <app-results-filter
+    [region]="region"
+    [count]="regionList.length"
+    [select]="select"
+    [input]="text"
     >
-      <div gdGridAlign="center" *ngFor="let item of regionListScroll">
-        <app-map-results-item  [beachItem]="item"></app-map-results-item>
-      </div>
-  </div>
+
+  </app-results-filter>
+
+  <app-results-content
+    [regionList]="filteredRegionList"
+  >
+
+  </app-results-content>
 
 </section>

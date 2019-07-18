@@ -1,0 +1,13 @@
+.results {
+  margin-top: 2rem;
+  &__showing {
+    margin: 0 auto;
+    font-size: 1.5rem;
+    margin: 2rem;
+    color: #777
+  }
+
+  &__content {
+    padding: 2rem 0;
+  }
+}

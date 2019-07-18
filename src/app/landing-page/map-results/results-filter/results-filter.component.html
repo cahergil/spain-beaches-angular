@@ -1,0 +1,36 @@
+<section >
+<div class="results__header">
+  <span class="results__header-number">{{count}}</span> beaches in <span
+    class="results__header-region">{{region}}</span>
+
+</div>
+
+<div class="results__search">
+  <div class="results__search-title">Narrow your search by beach name or locality</div>
+  <form>
+    <mat-form-field class="results__search-select" color="accent">
+      <mat-label>Select by</mat-label>
+      <mat-select [(value)]="select" (selectionChange)="onSelectionChange($event.value)">
+        <mat-option value="termino_municipal">
+          Locality
+        </mat-option>
+        <mat-option value="nombre">
+          Beach name
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field
+      class="results__search-input"
+      style="text-align: left"
+      color="accent">
+      <input
+        matInput
+        placeholder="search"
+        [formControl]="inputControl"
+        [value]="input">
+    </mat-form-field>
+
+  </form>
+</div>
+
+</section>

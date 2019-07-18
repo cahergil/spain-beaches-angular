@@ -1,5 +1,5 @@
 import * as LandingPageActions from './landing-page.actions';
-import { Playa } from '../playas.model';
+import { Playa } from '../../playas.model';
 
 export interface State  {
   beaches: Playa[];

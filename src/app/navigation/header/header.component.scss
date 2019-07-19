@@ -4,13 +4,24 @@ a {
 
 }
 
-a:hover,
-a:active {
-  color: lightgray;
-}
 
 .navigation-items {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+
+.active-item {
+  color: #d4ac16 !important;
+}
+
+
+.item {
+
+ font-size: 1.7rem;
+ &:hover, &:active {
+  color: #d4ac16;
+
+ }
 }

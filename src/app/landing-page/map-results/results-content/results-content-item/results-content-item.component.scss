@@ -6,10 +6,11 @@
 
 }
 .cardHeaderPrimaryBackgroundColor {
-  background-color: #074c82;
+  //it has to be background not background-color
+  background: linear-gradient(0deg,#fff 30%,#074c82 70%);
 }
 .cardHeaderAccentBackgroundColor {
-  background-color: #FABC3D;
+  background:linear-gradient(0deg,#fff 30%,#FABC3D 70%);
 }
 
 .cardTitleBlueFlag {

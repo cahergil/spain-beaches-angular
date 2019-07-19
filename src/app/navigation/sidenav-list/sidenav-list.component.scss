@@ -1,3 +1,6 @@
+@import '../../../sass/styles.scss';
+@import '../../../theme_beaches.scss';
+
 a {
   text-decoration: none;
   color: white;
@@ -28,4 +31,12 @@ button {
 it only to the fontawesome icon */
 mat-icon {
   height: auto;
+}
+
+.active-item {
+  // color: map-color($beaches-app-primary, default);
+  color: #d4ac16 !important;
+}
+.drawer-item {
+  color: #fff !important;
 }

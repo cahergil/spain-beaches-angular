@@ -32,12 +32,7 @@
     class="image"
     (load)="onLoad()"
     alt="Photo of {{beachItem.nombre}}">
-  <!-- <mat-card-content>
-    <p>
-      {{ beachItem.descripcion | shorten:170 }}
-    </p>
-  </mat-card-content> -->
   <mat-card-actions>
-    <button mat-raised-button >DETAILS</button>
+    <button mat-stroked-button [color]="isBlueFlag ? 'primary':'accent'" >DETAILS</button>
   </mat-card-actions>
 </mat-card>

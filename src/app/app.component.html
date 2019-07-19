@@ -4,7 +4,7 @@
     We could have passed sidenav to app-sidenav-list and mat-sidenav-content as an input,
     but Max says his solution is better due to loosely coupling
   -->
-  <mat-sidenav #sidenav role="navigation">
+  <mat-sidenav #sidenav role="navigation" class="sidedrawer">
     <app-sidenav-list (close)="sidenav.close()"></app-sidenav-list>
   </mat-sidenav>
   <mat-sidenav-content>

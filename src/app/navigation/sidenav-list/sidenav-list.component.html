@@ -1,9 +1,9 @@
 <mat-nav-list>
-  <a mat-list-item routerLink="/" (click)="onClose()">
-    <mat-icon>face</mat-icon>
+  <a mat-list-item routerLink="/" routerLinkActive="active-item" (click)="onClose()">
+    <mat-icon>map</mat-icon>
     <span class="nav-caption">Map</span>
   </a>
-  <a mat-list-item routerLink="/search" (click)="onClose()">
+  <a mat-list-item  class="drawer-item" routerLink="/search" routerLinkActive="active-item" (click)="onClose()">
     <!-- <mat-icon>input</mat-icon>
         Using FONT-AWESOME:
         1) npm install --save-dev @fortawesome/fontawesome-free
@@ -11,18 +11,19 @@
         2) @import "~@fortawesome/fontawesome-free/css/all.css";
         3) adjust styles: mat-icon {height: auto;}
         -->
-    <mat-icon fontSet="fa" fontIcon="fa-sign-in-alt" class="fa-lg"></mat-icon>
+    <!-- <mat-icon fontSet="fa" fontIcon="fa-sign-in-alt" class="fa-lg"></mat-icon> -->
+    <mat-icon fontSet="fa" fontIcon="fa-search" class="fa-lg"></mat-icon>
     <span class="nav-caption">Search</span>
   </a>
-  <a mat-list-item routerLink="/graphics" (click)="onClose()">
-    <mat-icon>fitness_center</mat-icon>
-    <span class="nav-caption">Graphics</span>
+  <a mat-list-item  class="drawer-item" routerLink="/about" routerLinkActive="active-item" (click)="onClose()">
+    <mat-icon>person_pin</mat-icon>
+    <span class="nav-caption">About</span>
   </a>
   <!-- because there is no link to somewhere, you trigger an action -->
-  <mat-list-item>
+  <!-- <mat-list-item>
     <button mat-icon-button (click)="onClose()">
       <mat-icon>eject</mat-icon>
       <span class="nav-caption">Logout</span>
-    </button>
-  </mat-list-item>
+    </button> -->
+  <!-- </mat-list-item> -->
 </mat-nav-list>

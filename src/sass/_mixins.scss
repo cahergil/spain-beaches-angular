@@ -30,7 +30,7 @@ $breakpoint argument choices:
     }
 }
 
-@mixin title-grid($underline-width,$title-color,$marginTop, $marginBottom) {
+@mixin title-grid($underline-width,$title-color,$paddingTop, $paddingBottom) {
     .heading__grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -38,7 +38,7 @@ $breakpoint argument choices:
       grid-row-gap: 1rem;
       justify-content: center;
       justify-items: center;
-      margin: $marginTop $marginBottom;
+      padding: $paddingTop $paddingBottom;
       &-title {
           color: $title-color;
           font-family: 'Roboto', sans-serif;

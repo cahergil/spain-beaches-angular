@@ -38,7 +38,8 @@ $breakpoint argument choices:
       grid-row-gap: 1rem;
       justify-content: center;
       justify-items: center;
-      padding: $paddingTop $paddingBottom;
+      padding-top: $paddingTop;
+      padding-bottom: $paddingBottom;
       &-title {
           color: $title-color;
           font-family: 'Roboto', sans-serif;

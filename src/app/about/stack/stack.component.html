@@ -1,0 +1,26 @@
+<section class="root"
+>
+  <div class="heading__grid"
+  (appear)="onAppearHeading()"
+  [@slideHeadingState]="slideHeadingState"
+
+  >
+    <h1 class="heading__grid-title">Stack</h1>
+    <div class="heading__grid-underline"></div>
+  </div>
+  <div class="wrapper">
+    <mat-list>
+      <h3 mat-subheader>Libraries:</h3>
+      <!-- https://github.com/angular/components/issues/9188 -->
+      <a mat-list-item
+      href="{{ library.url}}"
+      target="_blank" class="list-item"
+      *ngFor="let library of stackList; let i = index">
+          <img mat-list-icon src={{library.icon}} class="avatar"/>
+          <h4 mat-line>{{ library.tech }}</h4>
+          <p mat-line class="list-url"> {{ library.url}} </p>
+        <mat-divider  *ngIf="i !==stackList.length-1"></mat-divider>
+      </a>
+    </mat-list>
+  </div>
+</section>

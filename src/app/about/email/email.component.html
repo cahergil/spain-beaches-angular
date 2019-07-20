@@ -1,0 +1,20 @@
+<section class="contact">
+  <div class="contact__rectangle">
+  </div>
+  <div class="contact__envelope">
+  </div>
+  <h1 id="contact"></h1>
+  <div class="heading__grid" (appear)="onAppearHeading()" [@slideHeadingState]="slideHeadingState">
+    <h1 class="heading__grid-title">Contact me</h1>
+    <div class="heading__grid-underline"></div>
+  </div>
+  <div class="contact__button" fxLayout fxLayoutAlign="center center">
+    <a style="text-decoration: 'none'"
+     href="mailto:chernandezgil@gmail.com" target="_blank" rel="noopener noreferrer">
+    <button color="accent"  mat-stroked-button style="text-align: center; padding: 1rem; border: '1px solid #D4AC16' !important">
+      <span class="contact__button-text" >SEND EMAIL</span>
+      <mat-icon>contact_mail</mat-icon>
+    </button>
+    </a>
+  </div>
+</section>

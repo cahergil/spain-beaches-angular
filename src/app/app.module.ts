@@ -11,6 +11,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
+
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -25,7 +27,13 @@ import { ResultsContentComponent } from './landing-page/map-results/results-cont
 import { ResultsFilterComponent } from './landing-page/map-results/results-filter/results-filter.component';
 // tslint:disable-next-line: max-line-length
 import { ResultsContentItemComponent } from './landing-page/map-results/results-content/results-content-item/results-content-item.component';
-
+import { AboutComponent } from './about/about.component';
+import { AppearViewPortDirective } from './directives/appear-viewport.directive';
+import { AttributionComponent } from './about/attribution/attribution.component';
+import { StackComponent } from './about/stack/stack.component';
+import { EmailComponent } from './about/email/email.component';
+import { TitleComponent } from './about/title/title.component';
+import { ListItemComponent } from './about/list-item/list-item.component';
 
 
 @NgModule({
@@ -38,9 +46,16 @@ import { ResultsContentItemComponent } from './landing-page/map-results/results-
     MapResultsComponent,
     ShortenPipe,
     ImageFallbackDirective,
+    AppearViewPortDirective,
     ResultsContentComponent,
     ResultsFilterComponent,
-    ResultsContentItemComponent
+    ResultsContentItemComponent,
+    AboutComponent,
+    AttributionComponent,
+    StackComponent,
+    EmailComponent,
+    TitleComponent,
+    ListItemComponent
 
 
   ],

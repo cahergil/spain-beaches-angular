@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MapResultsComponent } from './landing-page/map-results/map-results.component';
+import { AboutComponent } from './about/about.component';
 const routes: Routes = [
   { path: '', redirectTo: 'spain-map', pathMatch: 'full'},
   {
@@ -9,7 +10,7 @@ const routes: Routes = [
       { path: ':region', component: MapResultsComponent}
     ]
   },
-  { path: 'graphics', component: LandingPageComponent},
+  { path: 'about', component: AboutComponent},
   { path: 'search', component: LandingPageComponent },
 ];
 

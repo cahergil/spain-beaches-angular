@@ -1,0 +1,28 @@
+@import '../../../sass/styles.scss';
+
+.root {
+  width: 100%;
+  background-color:#fff;
+  @include title-grid(5rem, $color-black, 2rem, 2rem);
+}
+
+.wrapper {
+  padding: 0 2rem;
+}
+
+.avatar {
+  padding: 0px !important;
+  width: 32px !important;
+  height: 32px !important;
+
+}
+
+.list-item {
+  text-decoration: none;
+  &:hover, &.active {
+    background-color: #EBEBEB
+  }
+}
+.list-url {
+  color: #D4AC16 !important;
+}

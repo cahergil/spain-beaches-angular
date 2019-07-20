@@ -1,0 +1,31 @@
+@import '../../../sass/styles.scss';
+.contact {
+    width: 100%;
+    // margin-bottom: 10rem;
+    background-color: #2196F3;
+
+    &__rectangle {
+          height: 5vw;
+          background-color: white;
+
+    }
+
+    &__envelope {
+        margin-top: -1px;
+        height: 10vw;
+        background-image: linear-gradient(rgba($color-white,1), rgba($color-white,1));
+        -webkit-clip-path: polygon(50% 10vw, 0 0, 100% 0);
+        clip-path: polygon(50% 10vw, 0 0, 100% 0);
+        // margin-bottom: 10rem;
+    }
+
+    @include title-grid(10rem, $color-white, 10rem, 2rem);
+
+    &__button {
+      margin-top: 5rem;
+      padding-bottom: 5rem;
+      &-text {
+        margin-right: 1rem;
+      }
+    }
+}

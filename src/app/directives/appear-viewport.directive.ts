@@ -1,6 +1,5 @@
-import { Directive, ElementRef, HostListener, EventEmitter, Output, AfterViewInit } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Output, AfterViewInit } from '@angular/core';
 import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/scrolling';
-import { empty } from 'rxjs';
 
 @Directive({
     selector: '[appear]'

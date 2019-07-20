@@ -29,3 +29,29 @@ $breakpoint argument choices:
        @media only screen and (min-width: 112.5em) { @content };  //1800px
     }
 }
+
+@mixin title-grid($underline-width,$title-color,$marginTop, $marginBottom) {
+    .heading__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, min-content);
+      grid-row-gap: 1rem;
+      justify-content: center;
+      justify-items: center;
+      margin: $marginTop $marginBottom;
+      &-title {
+          color: $title-color;
+          font-family: 'Roboto', sans-serif;
+          font-size: 4rem;
+          font-weight: 300;
+
+      }
+      &-underline {
+          width: $underline-width;
+          height: 0.3rem;
+          background: #D4AC16;
+
+      }
+
+    } //.title-container
+}

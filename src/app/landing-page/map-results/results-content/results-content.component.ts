@@ -1,24 +1,26 @@
-import { Component, OnInit, Input, ChangeDetectorRef, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, AfterViewInit, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/scrolling';
 
 import { Playa } from 'src/app/playas.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-results-content',
   templateUrl: './results-content.component.html',
   styleUrls: ['./results-content.component.scss']
 })
-export class ResultsContentComponent implements OnInit, OnChanges {
+export class ResultsContentComponent implements OnInit, OnChanges, OnDestroy {
 
   public filteredList: Playa[] = [];
   private offset: number;
   private step = 20;
   private reachedEnd = false;
   @Input() regionList: Playa[];
+  private subscription: Subscription;
   constructor(private ref: ChangeDetectorRef, private scrollDispatcher: ScrollDispatcher) {
     // https://stackoverflow.com/questions/44516017/how-to-handle-window-scroll-event-in-angular-4/54005183#54005183
     // https://material.angular.io/cdk/scrolling/overview
-    this.scrollDispatcher.scrolled().subscribe((x: CdkScrollable) => {
+    this.subscription = this.scrollDispatcher.scrolled().subscribe((x: CdkScrollable) => {
       const val = x.measureScrollOffset('bottom');
       if (val < 100) {
        this.onScroll();
@@ -55,7 +57,11 @@ export class ResultsContentComponent implements OnInit, OnChanges {
     }
     this.filteredList = [...this.regionList.slice(0, this.offset)];
     this.ref.detectChanges();
-    console.log('offset', this.offset);
   }
 
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

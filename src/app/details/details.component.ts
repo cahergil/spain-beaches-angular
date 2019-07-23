@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { filter, map, first, mergeMap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -13,7 +13,7 @@ import { GeneralInfoComponent } from './presentation/general-info/general-info.c
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit, OnDestroy {
+export class DetailsComponent implements OnInit, OnDestroy, AfterViewInit {
   public beachId: string;
   public isBlueFlag: boolean;
   public beach: Playa;
@@ -40,6 +40,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private store: Store<AppState>) { }
 
   ngOnInit() {
+
       this.route.queryParams
       .pipe(
         filter(params => params.id)
@@ -80,6 +81,12 @@ export class DetailsComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngAfterViewInit() {
+    const element = document.getElementById('banner');
+    if (element) {
+      element.scrollIntoView();
+    }
+  }
   ngOnDestroy() {
     // this.store.dispatch(new fromNavigation.SetNavigationVisible(true));
   }

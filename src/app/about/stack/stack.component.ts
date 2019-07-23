@@ -15,32 +15,27 @@ import { slideHeadingTrigger } from 'src/app/animations/animations';
 })
 export class StackComponent implements OnInit {
   public slideHeadingState = 'out-viewport';
-  public reactIcon = './assets/images/react.png';
-  public reactRouterIcon = './assets/images/reactRouter.png';
-  public reduxIcon = './assets/images/redux.png';
-  public materialUIIcon = './assets/images/materialUi.png';
+  public angularIcon = './assets/images/angular.png';
+  public ngrxIcon = './assets/images/ngrx.png';
+  public angularMaterialIcon = './assets/images/angularMaterial.png';
   public sassIcon = './assets/images/sass.png';
+  public rxjsIcon = './assets/images/rxjs.jpg';
   public githubIcon = './assets/images/github.png';
   public stackList = [
     {
-      tech: 'React 16.8.6',
-      url: 'https://reactjs.org/',
-      icon: this.reactIcon
+      tech: 'Angular 7.2.0',
+      url: 'https://github.com/angular/angular',
+      icon: this.angularIcon
     },
     {
-      tech: 'React router 5.0.0',
-      url: 'https://reacttraining.com/react-router/web/guides/quick-start',
-      icon: this.reactRouterIcon
+      tech: 'Ngrx 7.4.0',
+      url: 'https://ngrx.io/',
+      icon: this.ngrxIcon
     },
     {
-      tech: 'Redux 4.0.1',
-      url: 'https://redux.js.org/',
-      icon: this.reduxIcon
-    },
-    {
-      tech: 'Material-UI 4.2.0',
-      url: 'https://material-ui.com/',
-      icon: this.materialUIIcon
+      tech: 'Angular material 7.3.7',
+      url: 'https://material.angular.io/',
+      icon: this.angularMaterialIcon
     },
     {
       tech: 'Sass',
@@ -48,33 +43,28 @@ export class StackComponent implements OnInit {
       icon: this.sassIcon
     },
     {
-      tech: 'React-image-gallery 0.8.17',
-      url: 'https://github.com/xiaolin/react-image-gallery',
+      tech: 'Rsjx 6.3.3',
+      url: 'https://github.com/ReactiveX/rxjs',
+      icon: this.rxjsIcon
+    },
+    {
+      tech: 'Font awesome 4.7.0',
+      url: 'https://fontawesome.com/',
       icon: this.githubIcon
     },
     {
-      tech: 'React reveal 1.2.2',
-      url: 'https://github.com/rnosov/react-reveal',
-      icon: this.githubIcon
-    },
-    {
-      tech: 'React-image-fallback 8.0.0',
+      tech: 'Amcharts3-angular 2.2.3',
       url: 'https://github.com/socialtables/react-image-fallback',
       icon: this.githubIcon
     },
     {
-      tech: 'Amcharts3-react 3.1.0',
-      url: 'https://github.com/amcharts/amcharts3-react',
+      tech: 'Angular maps 1.0.0',
+      url: 'https://angular-maps.com/',
       icon: this.githubIcon
     },
     {
-      tech: 'React-google-maps 9.4.5',
-      url: 'https://github.com/tomchentw/react-google-maps',
-      icon: this.githubIcon
-    },
-    {
-      tech: 'React-textfit 1.1.0',
-      url: 'https://github.com/malte-wessel/react-textfit',
+      tech: 'Ngx-gallery 5.10.0',
+      url: 'https://lukasz-galka.github.io/ngx-gallery-demo/',
       icon: this.githubIcon
     }];
   constructor(private ref: ChangeDetectorRef) { }

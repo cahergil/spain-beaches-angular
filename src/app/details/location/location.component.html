@@ -1,3 +1,5 @@
-<p>
-  location works!
-</p>
+<agm-map [latitude]="beachCoordinates.lat" [longitude]="beachCoordinates.lng">
+  <agm-marker [latitude]="beachCoordinates.lat" [longitude]="beachCoordinates.lng">
+    <agm-info-window [isOpen]="true">{{name}}</agm-info-window>
+  </agm-marker>
+</agm-map>

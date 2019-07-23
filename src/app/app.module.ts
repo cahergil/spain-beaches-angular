@@ -10,7 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { NgxGalleryModule } from 'ngx-gallery';
+import { AgmCoreModule } from '@agm/core';
 
 
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
@@ -48,7 +49,6 @@ import { BannerComponent } from './details/banner/banner.component';
 import { DetailsTitleComponent } from './details/details-title/details-title.component';
 import { SectionTitleComponent } from './details/facilities/section-title/section-title.component';
 import { TranslateTextComponent } from './details/translate-text/translate-text.component';
-import { NgxGalleryModule } from 'ngx-gallery';
 
 
 @NgModule({
@@ -103,7 +103,11 @@ import { NgxGalleryModule } from 'ngx-gallery';
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 10
     }) : [],
-    NgxGalleryModule
+    NgxGalleryModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBzE15BZUN0Xhhx0OzkMKNlaII7QX4p6GU'
+    })
+
   ],
   providers: [AmChartsService],
   bootstrap: [AppComponent]

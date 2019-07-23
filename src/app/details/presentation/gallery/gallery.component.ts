@@ -23,8 +23,8 @@ export class GalleryComponent implements OnInit, OnChanges {
     if (changes[imagesString].currentValue !== undefined) {
       this.galleryOptions = [
         {
-          width: '600px',
-          height: '400px',
+          width: '100%',
+          height: '50rem',
           thumbnailsColumns: 4,
           imageAnimation: NgxGalleryAnimation.Slide
         },
@@ -32,7 +32,7 @@ export class GalleryComponent implements OnInit, OnChanges {
         {
           breakpoint: 800,
           width: '100%',
-          height: '600px',
+          height: '40rem',
           imagePercent: 80,
           thumbnailsPercent: 20,
           thumbnailsMargin: 20,

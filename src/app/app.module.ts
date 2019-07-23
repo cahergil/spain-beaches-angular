@@ -12,7 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { AgmCoreModule } from '@agm/core';
-
+import { AngularFittextModule } from 'angular-fittext';
 
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { HeaderComponent } from './navigation/header/header.component';
@@ -106,7 +106,8 @@ import { TranslateTextComponent } from './details/translate-text/translate-text.
     NgxGalleryModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBzE15BZUN0Xhhx0OzkMKNlaII7QX4p6GU'
-    })
+    }),
+    AngularFittextModule
 
   ],
   providers: [AmChartsService],

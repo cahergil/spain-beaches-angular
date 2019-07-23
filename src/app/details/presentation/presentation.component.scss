@@ -1,0 +1,19 @@
+:host {
+
+  .root {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 34% 64%;
+    grid-template-rows: repeat(2, min-content);
+    grid-column-gap: 2%;
+  }
+  .sectionRoot {
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(2, min-content);
+    box-shadow: 2px 1px 5px #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+}

@@ -34,6 +34,21 @@ import { StackComponent } from './about/stack/stack.component';
 import { EmailComponent } from './about/email/email.component';
 import { TitleComponent } from './about/title/title.component';
 import { ListItemComponent } from './about/list-item/list-item.component';
+import { SearchComponent } from './search/search.component';
+import { SearchFiltersComponent } from './search/search-filters/search-filters.component';
+import { DetailsComponent } from './details/details.component';
+import { PresentationComponent } from './details/presentation/presentation.component';
+import { ServicesComponent } from './details/services/services.component';
+import { LocationComponent } from './details/location/location.component';
+import { DescriptionComponent } from './details/presentation/description/description.component';
+import { GalleryComponent } from './details/presentation/gallery/gallery.component';
+import { GeneralInfoComponent } from './details/presentation/general-info/general-info.component';
+import { FacilitiesComponent } from './details/facilities/facilities.component';
+import { BannerComponent } from './details/banner/banner.component';
+import { DetailsTitleComponent } from './details/details-title/details-title.component';
+import { SectionTitleComponent } from './details/facilities/section-title/section-title.component';
+import { TranslateTextComponent } from './details/translate-text/translate-text.component';
+
 
 
 @NgModule({
@@ -55,7 +70,22 @@ import { ListItemComponent } from './about/list-item/list-item.component';
     StackComponent,
     EmailComponent,
     TitleComponent,
-    ListItemComponent
+    ListItemComponent,
+    SearchComponent,
+    SearchFiltersComponent,
+    DetailsComponent,
+    PresentationComponent,
+    ServicesComponent,
+    LocationComponent,
+    DescriptionComponent,
+    GalleryComponent,
+    GeneralInfoComponent,
+    FacilitiesComponent,
+    BannerComponent,
+    DetailsTitleComponent,
+    SectionTitleComponent,
+    TranslateTextComponent
+
 
 
   ],

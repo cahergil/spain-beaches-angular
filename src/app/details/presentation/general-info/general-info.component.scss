@@ -1,0 +1,18 @@
+.root {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 35% 65%;
+  grid-template-rows: repeat(9, 3rem);
+  justify-items: start;
+  grid-row-gap: 1.5rem;
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+.label {
+  opacity: 0.87;
+}
+
+.value {
+  opacity: 0.60
+}

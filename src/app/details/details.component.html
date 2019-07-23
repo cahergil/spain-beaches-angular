@@ -1,0 +1,42 @@
+<section class="root">
+  <app-banner
+    [name]="beachName"
+    [isBlueFlag]="isBlueFlag">
+  </app-banner>
+
+  <app-presentation
+    [isBlueFlag]="isBlueFlag"
+    [generalInfo]="generalInfo">
+  </app-presentation>
+
+  <div class="sectionRoot">
+    <app-details-title
+      [name]="'Features'"
+      [isBlueFlag]="isBlueFlag">
+    </app-details-title>
+    <app-facilities
+      [beach]="beach">
+    </app-facilities>
+  </div>
+
+  <div class="sectionRoot">
+    <app-details-title
+      [name]="'Services'"
+      [isBlueFlag]="isBlueFlag">
+    </app-details-title>
+    <app-services
+      [beach]="beach">
+    </app-services>
+  </div>
+  <div class="sectionRoot">
+    <app-details-title
+      [name]="'Location'"
+      [isBlueFlag]="isBlueFlag">
+    </app-details-title>
+    <app-location
+      [name]="beachName"
+      [beachCoordinates]="beachCoordinates"
+    >
+    </app-location>
+  </div>
+</section>

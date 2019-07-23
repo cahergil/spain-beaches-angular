@@ -33,6 +33,10 @@
     (load)="onLoad()"
     alt="Photo of {{beachItem.nombre}}">
   <mat-card-actions>
-    <button mat-stroked-button [color]="isBlueFlag ? 'primary':'accent'" >DETAILS</button>
+    <button
+      mat-stroked-button
+      [color]="isBlueFlag ? 'primary':'accent'"
+      (click)="onDetailsClick()"
+      >DETAILS</button>
   </mat-card-actions>
 </mat-card>

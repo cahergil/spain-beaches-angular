@@ -11,7 +11,7 @@ const initialState: State = {
   beachesRegion: []
 };
 
-export function mapResultsreducers(state = initialState, action: MapResultsActions.MapResultsActions) {
+export function mapResultsReducer(state = initialState, action: MapResultsActions.MapResultsActions) {
 
   switch (action.type) {
     case MapResultsActions.SET_BEACHES_REGION:

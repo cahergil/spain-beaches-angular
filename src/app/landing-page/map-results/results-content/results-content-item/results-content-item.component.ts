@@ -1,5 +1,11 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { Playa } from 'src/app/playas.model';
+import { Router } from '@angular/router';
+
+import * as fromApp from '../../../../store/app.reducers';
+import * as fromNavigationActions from '../../../../navigation/header/store/header.actions';
+
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-results-content-item',
@@ -14,7 +20,7 @@ export class ResultsContentItemComponent implements OnInit {
   public isBlueFlag: boolean;
   public loading = true;
   public images: string[] = [];
-  constructor(private ref: ChangeDetectorRef) { }
+  constructor(private ref: ChangeDetectorRef, private router: Router, private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
     this.images = this.beachItem.images.split(',');
@@ -49,6 +55,10 @@ export class ResultsContentItemComponent implements OnInit {
   onLoad() {
     this.loading = false;
     this.ref.detectChanges();
-    // console.log('loading:' + this.beachItem.nombre + ': ' + this.loading);
+  }
+
+  onDetailsClick() {
+    // this.store.dispatch(new fromNavigationActions.SetNavigationVisible(false));
+    this.router.navigate(['/details'], { queryParams: { id: this.beachItem.id } });
   }
 }

@@ -1,5 +1,5 @@
 <!-- toolbar uses internally flexbox -->
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="!isDetails">
   <div fxHide.gt-xs>
     <button mat-icon-button (click)="onToggleSidenav()">
       <mat-icon>menu</mat-icon>

@@ -1,0 +1,22 @@
+<section>
+  <div class="root">
+    <div class="label">Locality:</div>
+    <div class="value">{{generalInfo.termino_municipal}}</div>
+    <div class="label">Province:</div>
+    <div class="value">{{generalInfo.provincia}}</div>
+    <div class="label">Region:</div>
+    <div class="value">{{generalInfo.comunidad_autonoma}}</div>
+    <div class="label">Length:</div>
+    <div class="value">{{utils.translateMetros(generalInfo.longitud)}}</div>
+    <div class="label">Width:</div>
+    <div class="value">{{utils.translateMetros(generalInfo.anchura)}}</div>
+    <div class="label">Occupancy:</div>
+    <div class="value">{{utils.translateOcuppancy(generalInfo.grado_ocupacion)}}</div>
+    <div class="label">Promenade:</div>
+    <div class="value">{{utils.getYesNo(generalInfo.paseo_maritimo)}}</div>
+    <div class="label">Alt name 1:</div>
+    <div class="value">{{utils.getYesNo(generalInfo.nombre_alternativo)}}</div>
+    <div class="label">Alt name 2:</div>
+    <div class="value">{{utils.getYesNo(generalInfo.nombre_alternativo_2)}}</div>
+  </div>
+</section>

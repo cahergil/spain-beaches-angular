@@ -1,0 +1,120 @@
+<section class="root">
+  <div className="sectionRoot">
+    <app-section-title-details
+      [name]="'1. Type of beach'">
+    </app-section-title-details>
+    <div class="subsectionRoot">
+      <div class="label">Composition:</div>
+      <div class="text">{{utils.translateComposition(composicion)}}</div>
+      <div class="label">Type of sand:</div>
+      <div class="text">{{utils.translateTypeOfSand(tipoDeArena)}}</div>
+      <div class="label">Bathing conditions:</div>
+      <div class="text">{{ utils.translateBathingConditions(condicionesBano) }}</div>
+      <div class="label">Anchoring Area:</div>
+      <div class="text">{{ utils.getYesNo(zonaFondeoBalizada) }}</div>
+      <div class="label">Nudism:</div>
+      <div class="text">{{ utils.getYesNo(nudismo) }}</div>
+
+    </div>
+  </div>
+  <div class="sectionRoot">
+    <app-section-title-details
+     [name]="'2. Environmental aspects'" >
+    </app-section-title-details>
+    <div class="subsectionRoot">
+      <div class="label">Vegetation:</div>
+      <div class="text">{{utils.getYesNo(vegetacion)}}</div>
+      <div class="label">Protected area:</div>
+      <div class="text">{{utils.getYesNo(espacioProtegido)}}</div>
+      <div class="label">Interventions:</div>
+      <div class="text">{{utils.getYesNo(actuaciones)}}</div>
+      <div class="label">Blue flag:</div>
+      <div class="text">{{utils.getYesNo(banderaAzul)}}</div>
+    </div>
+  </div>
+  <div class="sectionRoot">
+    <app-section-title-details
+      [name]="'3. Nearest hospital'">
+    </app-section-title-details>
+    <div class="subsectionRoot">
+      <div class="label">Name of hospital:</div>
+      <div class="text">{{hospital}}</div>
+      <div class="label">Address:</div>
+      <div class="text">{{direccionHospital}}</div>
+      <div class="label">Telephone:</div>
+      <div class="text">{{telefonoHospital}}</div>
+      <div class="label">Distance to hospital:</div>
+      <div class="text">{{distanciaHospital}}</div>
+    </div>
+  </div>
+  <div class="sectionRoot">
+    <app-section-title-details
+      [name]="'4. Access'">
+    </app-section-title-details>
+    <div class="subsectionRoot">
+      <div class="label">Type of access:</div>
+      <div class="text">{{utils.translateTypeOfAccess(forma_de_acceso)}}</div>
+      <div class="label">Access signage:</div>
+      <div class="text">{{utils.getYesNo(senalizacionAccesos)}}</div>
+      <div class="label">Access to disabled persons:</div>
+      <div class="text">{{utils.getYesNo(accesoDiscapacitados)}}</div>
+      <div class="label">Coordinates:</div>
+      <div class="text">lat:{{coordenadaY}} / lng:{{coordenadaX}} / H{{huso}}</div>
+      <div class="label">UTM coordinates:</div>
+
+      <div class="text">{{coordenadaGeograficaLatitud}} / {{coordenadaGeograficaLongitud}}</div>
+
+    </div>
+  </div>
+  <div class="sectionRoot">
+    <app-section-title-details
+      [name]="'5. Security'">
+    </app-section-title-details>
+    <div class="subsectionRoot">
+      <div class="label">Danger markers:</div>
+      <div class="text">{{utils.getYesNo(senalizacionPeligro)}}</div>
+      <div class="label">Help and rescue:</div>
+      <div class="text">{{utils.getYesNo(auxilioYSalvamento)}}</div>
+
+    </div>
+  </div>
+  <div class="sectionRoot">
+    <app-section-title-details
+      [name]="'6. Transport'">
+    </app-section-title-details>
+
+    <div class="subsectionRoot">
+      <div class="label">Nearby road:</div>
+      <div class="text">{{utils.getYesNo(carreteraMasProxima)}}</div>
+      <div class="label">Bus:</div>
+      <div class="text">{{utils.getYesNo(autobus)}}</div>
+      <div class="label">Parking:</div>
+      <div class="text">{{utils.getYesNo(aparcamiento)}}</div>
+
+
+    </div>
+  </div>
+
+  <div class="sectionRoot">
+    <app-section-title-details
+      [name]="'7. Pleasure harbour'">
+    </app-section-title-details>
+    <div class="subsectionRoot">
+      <div class="label">Harbour's name:</div>
+      <div class="text">{{utils.getYesNo(puertoDeportivo)}}</div>
+      <div class="label">Distance to beach:</div>
+      <div class="text">{{utils.getYesNo(distanciaPuertoDeportivo)}}</div>
+
+    </div>
+  </div>
+  <div class="sectionRoot">
+    <app-section-title-details [name]="'8. Observations'">
+    </app-section-title-details>
+    <div style="font-size: 1.5rem">
+      <app-translate-text [text]="utils.toRemoveQuotes(observaciones)">
+      </app-translate-text>
+
+    </div>
+  </div>
+</section>
+

@@ -12,7 +12,7 @@ const initialState: State = {
 
 };
 
-export function landingPageReducers(state = initialState, action: LandingPageActions.LangingPageActions) {
+export function landingPageReducer(state = initialState, action: LandingPageActions.LangingPageActions) {
 
   switch (action.type) {
     case LandingPageActions.SET_BEACHES:

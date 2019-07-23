@@ -1,0 +1,22 @@
+<section class="root">
+  <div class="sectionRoot">
+    <app-details-title
+      [name]="'General information'"
+      [isBlueFlag]="isBlueFlag">
+    </app-details-title>
+    <app-general-info
+      [generalInfo]="generalInfo"></app-general-info>
+  </div>
+  <div class="sectionRoot">
+    <app-details-title
+      [name]="'Photo gallery'"
+      [isBlueFlag]="isBlueFlag">
+    </app-details-title>
+    <app-gallery></app-gallery>
+  </div>
+  <app-description
+    [name]="'Description'"
+    [isBlueFlag]="isBlueFlag"
+    [description]="generalInfo.descripcion"
+    ></app-description>
+</section>

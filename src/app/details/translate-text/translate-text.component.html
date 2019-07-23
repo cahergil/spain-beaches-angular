@@ -1,0 +1,12 @@
+<p class="description">
+  {{ text }}
+</p>
+<div fxLayout
+     fxLayoutAlign="center center">
+  <button
+    (click)="onTranslate()"
+    mat-raised-button
+    [disabled]="translated"
+    class="button">
+    Primary</button>
+</div>

@@ -24,7 +24,7 @@ $font-display: 'Roboto', sans-serif;
 html {
   box-sizing: border-box;
   font-size: 62.5%;
-
+  font-family: $font-display;
   @include respond(phone) { // 1rem = 8 pixel,  < 600px
     font-size: 50%;
   }

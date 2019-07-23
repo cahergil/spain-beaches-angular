@@ -12,7 +12,9 @@
       [name]="'Photo gallery'"
       [isBlueFlag]="isBlueFlag">
     </app-details-title>
-    <app-gallery></app-gallery>
+    <app-gallery
+      [images]="generalInfo.images"
+    ></app-gallery>
   </div>
   <app-description
     [name]="'Description'"

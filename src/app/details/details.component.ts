@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import * as fromNavigation from '../navigation/header/store/header.actions';
 import {AppState} from '../store/app.reducers';
 import { Playa } from '../playas.model';
+import { GeneralInfoComponent } from './presentation/general-info/general-info.component';
 
 @Component({
   selector: 'app-details',

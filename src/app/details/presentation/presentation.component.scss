@@ -6,6 +6,12 @@
     grid-template-columns: 34% 64%;
     grid-template-rows: repeat(2, min-content);
     grid-column-gap: 2%;
+    @media (max-width: 800px) {
+      grid-template-columns: 100%;
+      grid-template-rows: repeat(3, min-content);
+      grid-column-gap: 0rem;
+      grid-row-gap: 2rem;
+    }
   }
   .sectionRoot {
     width: 100%;

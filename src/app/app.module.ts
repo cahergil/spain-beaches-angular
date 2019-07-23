@@ -48,7 +48,7 @@ import { BannerComponent } from './details/banner/banner.component';
 import { DetailsTitleComponent } from './details/details-title/details-title.component';
 import { SectionTitleComponent } from './details/facilities/section-title/section-title.component';
 import { TranslateTextComponent } from './details/translate-text/translate-text.component';
-
+import { NgxGalleryModule } from 'ngx-gallery';
 
 
 @NgModule({
@@ -103,7 +103,7 @@ import { TranslateTextComponent } from './details/translate-text/translate-text.
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 10
     }) : [],
-
+    NgxGalleryModule
   ],
   providers: [AmChartsService],
   bootstrap: [AppComponent]

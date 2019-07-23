@@ -1,10 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../store/app.reducers';
 import { Observable } from 'rxjs';
 import {  Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { filter } from 'rxjs/operators';
+
+import * as fromApp from '../../store/app.reducers';
+import * as regionMapActions from '../../landing-page/map/store/map.actions';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -14,7 +17,11 @@ export class HeaderComponent implements OnInit {
   public navigationVisible$: Observable<{navigationVisible: boolean}>;
   @Output() sidenavToggle = new EventEmitter<void>();
   public isDetails = false;
-  constructor(private store: Store<fromApp.AppState>, private router: Router, private location: Location) { }
+  constructor(
+    private store: Store<fromApp.AppState>,
+    private router: Router,
+    // private location: Location
+  ) { }
 
   ngOnInit() {
     // solution 1
@@ -44,5 +51,9 @@ export class HeaderComponent implements OnInit {
   }
   onToggleSidenav() {
     this.sidenavToggle.emit();
+  }
+
+  onClickSection() {
+    this.store.dispatch(new regionMapActions.SetMapRegion(''));
   }
 }

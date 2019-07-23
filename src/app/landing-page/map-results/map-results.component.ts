@@ -62,7 +62,8 @@ export class MapResultsComponent implements OnInit, OnDestroy {
 
   }
   ngOnInit() {
-
+    const resultId = document.getElementById('results');
+    resultId.scrollIntoView({ behavior: 'smooth' });
 
   }
 

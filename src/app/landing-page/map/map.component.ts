@@ -42,7 +42,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   handlePreSelect = (e) => {
-
+    console.log('handlePreselect');
     const mapObj = e.chart;
     this.mapObject = mapObj;
     const area = mapObj.getObjectById(this.preSelectedArea);
@@ -129,9 +129,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.router.navigate([region], { relativeTo: this.route })
         .then(success => {
           // console.log('router.navigate', success);
-          // const resultId = document.getElementById('results');
-          // console.log(resultId);
-          // resultId.scrollIntoView({ behavior: 'smooth' });
+          const resultId = document.getElementById('results');
+          resultId.scrollIntoView({ behavior: 'smooth' });
 
         });
 

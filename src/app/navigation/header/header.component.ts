@@ -25,6 +25,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     // solution 1
+    // import { Location } from '@angular/common';
+    // in constructor: // private location: Location
     // console.log(this.router.url);
     // if (this.location.path().startsWith('/details')) {
     //   console.log('details: true');

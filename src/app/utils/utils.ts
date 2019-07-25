@@ -370,5 +370,6 @@ export interface GeneralInfo {
   nombre_alternativo: string;
   nombre_alternativo_2: string;
   descripcion: string;
+  images: string;
 }
 

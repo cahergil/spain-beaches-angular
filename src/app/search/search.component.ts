@@ -24,6 +24,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 2500);
     this.utils = utilities;
     this.subscription = this.store.select('searchFilters')
       .subscribe(valObj => {
@@ -68,7 +71,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
         }
         if (this.filters.occupancy !== 'All') {
-          filterObject['grado_ocupacion'] = this.utils.translateOccupancyIntoSpanish(this.filters.occupancy)
+          filterObject['grado_ocupacion'] = this.utils.translateOccupancyIntoSpanish(this.filters.occupancy);
         }
         if (this.filters.searchText.trim()) {
           filterObject[`${this.filters.selectText}`] = this.filters.searchText;
@@ -113,6 +116,8 @@ export class SearchComponent implements OnInit, OnDestroy {
               }); // key.every
             }); // filter
             // console.log(this.filteredList);
+            // this.loading = false;
+            console.log(this.loading);
           });
       }); // first subscribe
   }

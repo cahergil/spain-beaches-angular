@@ -42,7 +42,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   handlePreSelect = (e) => {
-    console.log('handlePreselect');
+
     const mapObj = e.chart;
     this.mapObject = mapObj;
     const area = mapObj.getObjectById(this.preSelectedArea);

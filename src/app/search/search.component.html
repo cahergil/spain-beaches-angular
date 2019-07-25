@@ -7,9 +7,13 @@
       [filters]="filters"
       [actions]=""
     >
-
     </app-search-filters>
+    <div fxLayout fxLayoutAlign="center center" *ngIf="loading">
+      <mat-spinner>
+      </mat-spinner>
+    </div>
     <app-results-content
+      *ngIf="!loading"
       [list]="filteredList"
     ></app-results-content>
   </div>

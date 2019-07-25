@@ -18,7 +18,7 @@ export class GalleryComponent implements OnInit, OnChanges {
 
   }
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
+
     const imagesString = 'images';
     if (changes[imagesString].currentValue !== undefined) {
       this.galleryOptions = [

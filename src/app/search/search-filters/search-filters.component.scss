@@ -1,0 +1,135 @@
+@import '../../../sass/styles.scss';
+
+.root {
+  display: grid;
+  grid-template-columns: repeat(6, max-content);
+  grid-column-gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  padding: 1rem 2rem;
+  background-color: #2196F3;
+  border-radius: 5px;
+}
+
+.filterSize {
+  height: 1.8rem;
+  width: 1.8rem;
+  padding-top: 5px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.textWrapper {
+  position: relative;
+}
+
+.menuTypeOfBeach {
+  z-index: 100;
+  clip-path: polygon(0% 4%, 5% 4%, 10% 0%, 15% 4% ,100% 4%, 100% 100%, 0% 100%);
+  background-color: #F5F5F5;
+  position: absolute;
+  padding-top: 1rem;
+  top: 1.8rem;
+  left: 0;
+  height: 25rem;
+  width: 50rem;
+  overflow-y: scroll;
+}
+
+.typeOfBeachListRoot {
+  width: 100%;
+  max-width: 50rem;
+}
+
+.typeOfBeachSlider {
+  width: 30rem;
+  color: #D4AC16;
+}
+
+.menuServices {
+  z-index: 100;
+  clip-path: polygon(0% 4%, 5% 4%, 10% 0%, 15% 4% ,100% 4%, 100% 100%, 0% 100%);
+  background-color: #F5F5F5;
+  position: absolute;
+  padding-top: 1rem;
+  top: 1.8rem;
+  left: 0;
+  height: 30rem;
+  width: 30rem;
+  overflow-y: scroll;
+}
+
+.servicesListRoot {
+  width: 100%;
+  max-width: 30rem;
+}
+
+.menuGeneral {
+  z-index: 100;
+  clip-path: polygon(0% 4%, 5% 4%, 10% 0%, 15% 4% ,100% 4%, 100% 100%, 0% 100%);
+  background-color: #F5F5F5;
+  position: absolute;
+  padding-top: 2rem;
+  top: 1.8rem;
+  left: 0;
+  height: 30rem;
+  width: 40rem;
+  overflow-y: scroll;
+}
+
+.notActiveTypeOfBeach {
+  display: none;
+}
+.notActiveServices {
+  display: none;
+}
+.notActiveGeneral {
+  display: none;
+}
+
+.textStyle {
+  color: #fff;
+}
+
+.generalPadding {
+  padding-top: 1.5rem;
+}
+
+.marginCheckbox {
+  margin:  0 1rem;
+
+}
+
+.labelTextFieldStyle {
+  color: #fff
+}
+
+.generalListRoot {
+  width: 100%;
+  max-width: 40rem;
+}
+
+.generalOccupancyFormControl {
+  width: 20rem;
+  margin-left: 2rem;
+}
+
+.generalPrimary {
+  margin-left: 1.7rem;
+}
+
+.generalSecondary {
+  margin-left: 1.7rem;
+  margin-top: 1rem;
+}
+
+ ::ng-deep .mat-form-field-label {
+  /*change color of label*/
+  color: white !important;
+ }

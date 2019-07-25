@@ -310,11 +310,11 @@ export const includeDistance = (distance, userDistance) => {
   if (dbDistance <= userDistance) {
     return true;
   } else {
-    console.log(dbDistance + '>' + userDistance);
+    // console.log(dbDistance + '>' + userDistance);
     return false;
   }
 
-}
+};
 
 export const includeLength = (length, userDistance) => {
 
@@ -348,7 +348,7 @@ export const logarithmicSlider = position => {
   return Math.exp(minv + scale * (position - minp));
 };
 
-export const logPositionSlider = value => {
+export const logPositionSlider = (value: number) => {
   const minp = 0;
   const maxp = 100;
 

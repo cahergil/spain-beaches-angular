@@ -15,7 +15,7 @@ export class ResultsContentComponent implements OnInit, OnChanges, OnDestroy {
   private offset: number;
   private step = 20;
   private reachedEnd = false;
-  @Input() regionList: Playa[];
+  @Input() list: Playa[];
   private subscription: Subscription;
   constructor(private ref: ChangeDetectorRef, private scrollDispatcher: ScrollDispatcher) {
     // https://stackoverflow.com/questions/44516017/how-to-handle-window-scroll-event-in-angular-4/54005183#54005183
@@ -36,10 +36,10 @@ export class ResultsContentComponent implements OnInit, OnChanges, OnDestroy {
   loadData() {
     // offset init should be here, for each new region click
     this.offset = 0;
-    this.filteredList = this.regionList.slice(this.offset, this.step);
+    this.filteredList = this.list.slice(this.offset, this.step);
   }
   ngOnChanges(changes: SimpleChanges) {
-    const key = 'regionList';
+    const key = 'list';
     if (changes[key].currentValue.length > 0) {
       this.loadData();
     }
@@ -49,13 +49,13 @@ export class ResultsContentComponent implements OnInit, OnChanges, OnDestroy {
     if (this.reachedEnd) {
       return;
     }
-    if (this.offset + this.step <= this.regionList.length) {
+    if (this.offset + this.step <= this.list.length) {
       this.offset += this.step;
     } else {
-      this.offset += (this.regionList.length - this.offset);
+      this.offset += (this.list.length - this.offset);
       this.reachedEnd = true;
     }
-    this.filteredList = [...this.regionList.slice(0, this.offset)];
+    this.filteredList = [...this.list.slice(0, this.offset)];
     this.ref.detectChanges();
   }
 

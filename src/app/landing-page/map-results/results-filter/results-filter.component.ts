@@ -38,7 +38,6 @@ export class ResultsFilterComponent implements OnInit {
       debounceTime(500),
       distinctUntilChanged()
     ).subscribe(val => {
-      console.log(val);
       this.store.dispatch(new MapResultsFilterActions.SetMapFilterText(val));
     });
   }

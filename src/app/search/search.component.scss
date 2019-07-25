@@ -1,0 +1,19 @@
+.rootWrap {
+  position: relative;
+}
+
+.root {
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  grid-row-gap: 2rem;
+  margin: 3rem;
+}
+
+.title {
+  font-size: 3rem;
+  opacity: 0.87;
+  text-align: center;
+  font-weight: 300;
+}
+

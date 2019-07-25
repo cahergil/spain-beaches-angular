@@ -1,3 +1,16 @@
-<section class="root">
+<section class="rootWrap">
+  <div class="root">
+    <p class="title">
+      Advanced Search
+    </p>
+    <app-search-filters
+      [filters]="filters"
+      [actions]=""
+    >
 
+    </app-search-filters>
+    <app-results-content
+      [list]="filteredList"
+    ></app-results-content>
+  </div>
 </section>

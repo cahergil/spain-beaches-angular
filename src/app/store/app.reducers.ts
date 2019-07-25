@@ -4,8 +4,8 @@ import * as fromMapResults from '../landing-page/map-results/store/map-results.r
 import * as fromLandingPage from '../landing-page/store/landing-page.reducers';
 import * as fromResultsFilter from '../landing-page/map-results/results-filter/store/results-filter.reducers';
 import * as fromNavigation from '../navigation/header/store/header.reducer';
-import * as fromMapRegion from '../landing-page/map/store/map.reducer'
-import * as fromSearchFilters from '../search/store/search.reducer'
+import * as fromMapRegion from '../landing-page/map/store/map.reducer';
+import * as fromSearchFilters from '../search/store/search.reducer';
 export interface AppState {
   beachesRegionList: fromMapResults.State;
   beachesList: fromLandingPage.State;

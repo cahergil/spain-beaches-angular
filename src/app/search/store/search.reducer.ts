@@ -40,7 +40,7 @@ const initialState: State = {
 
 
 
-export const searchFiltersReducer = (state = initialState, actions: searchFiltersActions.SearchFiltersActions) => {
+export function searchFiltersReducer(state = initialState, actions: searchFiltersActions.SearchFiltersActions) {
 
   switch (actions.type) {
     case searchFiltersActions.SET_NUDISM:

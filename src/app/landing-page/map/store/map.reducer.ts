@@ -9,7 +9,7 @@ const initialState: State = {
 };
 
 
-export const mapRegionReducer = (state = initialState, action: mapActions.MapActions) => {
+export function mapRegionReducer(state = initialState, action: mapActions.MapActions) {
   switch (action.type) {
     case mapActions.SET_MAP_REGION:
       return {

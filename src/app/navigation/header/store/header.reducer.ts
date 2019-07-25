@@ -8,7 +8,7 @@ const initialState: State = {
   navigationVisible: true
 };
 
-export const navigationHeaderReducer = (state = initialState, action: navigationHeaderActions.NavigationHeaderActions) => {
+export function navigationHeaderReducer(state = initialState, action: navigationHeaderActions.NavigationHeaderActions) {
   switch (action.type) {
     case navigationHeaderActions.SET_NAVIGATION_VISIBLE:
       return {

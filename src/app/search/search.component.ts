@@ -20,11 +20,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   public loading = true;
   private subscription: Subscription;
   public utils;
+  public isMobile = false;
   constructor(private store: Store<fromApp.AppState>, private ref: ChangeDetectorRef) {
-    this.catchResizeWindow();
+    this.catchMobileWidth();
   }
 
-  catchResizeWindow() {
+  catchMobileWidth() {
     const resize$ = fromEvent(window, 'resize')
       .pipe(
         debounceTime(200),
@@ -34,6 +35,9 @@ export class SearchComponent implements OnInit, OnDestroy {
       )
       .subscribe(width => {
         console.log(width);
+        if (width <= 900) {
+          this.isMobile = true;
+        }
       });
   }
 
@@ -129,9 +133,6 @@ export class SearchComponent implements OnInit, OnDestroy {
                 return beach[key] === filterObject[key];
               }); // key.every
             }); // filter
-            // console.log(this.filteredList);
-            // this.loading = false;
-            console.log(this.loading);
           });
       }); // first subscribe
   }

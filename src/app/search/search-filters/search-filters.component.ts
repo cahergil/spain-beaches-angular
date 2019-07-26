@@ -4,12 +4,12 @@ import { Store } from '@ngrx/store';
 import { Subscription, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatSliderChange } from '@angular/material/slider';
 
 import * as fromSearchReducer from '../store/search.reducer';
 import * as searchFiltersAction from '../store/search.actions';
 import * as fromApp from '../../store/app.reducers';
 import * as utils from '../../utils/utils';
-import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
   selector: 'app-search-filters',
@@ -19,7 +19,6 @@ import { MatSliderChange } from '@angular/material/slider';
 export class SearchFiltersComponent implements OnInit, OnDestroy {
 
   @Input() filters: fromSearchReducer.State;
-  @Input() actions: searchFiltersAction.SearchFiltersActions;
 
   public stateServices = false;
   public stateTypeOfBeach = false;

@@ -1,13 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef, AfterViewChecked, AfterViewInit, OnDestroy} from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable, fromEvent } from 'rxjs';
 
 import { Playa } from '../playas.model';
 import * as fromSearchReducer from './store/search.reducer';
 import * as searchFiltersAction from './store/search.actions';
 import * as fromApp from '../store/app.reducers';
 import * as utilities from '../utils/utils';
-import { map, filter, first } from 'rxjs/operators';
+import { map, filter, first, debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -20,8 +20,22 @@ export class SearchComponent implements OnInit, OnDestroy {
   public loading = true;
   private subscription: Subscription;
   public utils;
-  constructor(private store: Store<fromApp.AppState>, private ref: ChangeDetectorRef
-  ) { }
+  constructor(private store: Store<fromApp.AppState>, private ref: ChangeDetectorRef) {
+    this.catchResizeWindow();
+  }
+
+  catchResizeWindow() {
+    const resize$ = fromEvent(window, 'resize')
+      .pipe(
+        debounceTime(200),
+        map(() => window.innerWidth),
+        distinctUntilChanged(),
+        startWith(window.innerWidth)
+      )
+      .subscribe(width => {
+        console.log(width);
+      });
+  }
 
   ngOnInit() {
     setTimeout(() => {

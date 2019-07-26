@@ -1,1 +1,3 @@
-ng build --prod --base-href "https://cahergil.github.io/spain-beaches-angular/"
+1) ng build --prod --base-href "https://cahergil.github.io/spain-beaches-angular/"
+
+2) ngh --dir=dist/playas-angular

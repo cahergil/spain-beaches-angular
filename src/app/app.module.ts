@@ -49,6 +49,7 @@ import { BannerComponent } from './details/banner/banner.component';
 import { DetailsTitleComponent } from './details/details-title/details-title.component';
 import { SectionTitleComponent } from './details/facilities/section-title/section-title.component';
 import { TranslateTextComponent } from './details/translate-text/translate-text.component';
+import { SearchFiltersMobileComponent } from './search/search-filters-mobile/search-filters-mobile.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { TranslateTextComponent } from './details/translate-text/translate-text.
     BannerComponent,
     DetailsTitleComponent,
     SectionTitleComponent,
-    TranslateTextComponent
+    TranslateTextComponent,
+    SearchFiltersMobileComponent
 
 
 

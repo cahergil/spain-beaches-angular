@@ -3,11 +3,16 @@
     <p class="title">
       Advanced Search
     </p>
-    <app-search-filters
-      [filters]="filters"
-      [actions]=""
-    >
-    </app-search-filters>
+    <div *ngIf="!isMobile">
+      <app-search-filters
+        [filters]="filters">
+      </app-search-filters>
+    </div>
+    <div *ngIf="isMobile">
+      <app-search-filters-mobile [filters]="filters">
+
+      </app-search-filters-mobile>
+    </div>
     <div fxLayout fxLayoutAlign="center center" *ngIf="loading">
       <mat-spinner>
       </mat-spinner>

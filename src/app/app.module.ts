@@ -51,6 +51,7 @@ import { SectionTitleComponent } from './details/facilities/section-title/sectio
 import { TranslateTextComponent } from './details/translate-text/translate-text.component';
 import { SearchFiltersMobileComponent } from './search/search-filters-mobile/search-filters-mobile.component';
 import { DrawerComponent } from './search/search-filters-mobile/drawer/drawer.component';
+import { FeatureItemComponent } from './landing-page/map-results/results-content/results-content-item/feature-item/feature-item.component';
 
 
 @NgModule({
@@ -88,7 +89,8 @@ import { DrawerComponent } from './search/search-filters-mobile/drawer/drawer.co
     SectionTitleComponent,
     TranslateTextComponent,
     SearchFiltersMobileComponent,
-    DrawerComponent
+    DrawerComponent,
+    FeatureItemComponent
 
 
 

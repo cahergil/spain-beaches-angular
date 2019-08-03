@@ -1,43 +1,72 @@
-@import '../../../../../theme_beaches.scss';
-
-.card {
+.root {
   width: 35rem;
-
-
-}
-.cardHeaderPrimaryBackgroundColor {
-  //it has to be background not background-color
-  background: linear-gradient(0deg,#fff 30%,#074c82 70%);
-}
-.cardHeaderAccentBackgroundColor {
-  background:linear-gradient(0deg,#fff 30%,#FABC3D 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start
 }
 
-.cardTitleBlueFlag {
-  font-size: 1rem
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
+  height: 20rem;
+  width: 100%;
+  margin-bottom: 10px;
+  cursor: pointer;
+  &:hover .remainingImagesCount {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
-.cardTitleNoBlueFlag {
-  font-size: 1rem
+.remainingImagesCount {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 5rem;
+  color: '#fff';
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity visibility 0.4s;
 }
-
-.cardSubTitleBlueFlagColor {
-  color: #3DABEE
-}
-
-.cardSubTitleNoBlueFlagColor {
-  color: #976703
-}
-
 
 .image {
-  width: 35rem;
-  height: 22.5rem;
   object-fit: cover;
+  height: 20rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  transition: all 0.4s;
+  &:hover {
+    transform: scale(1.1);
+    filter: brightness(70%)
+  }
+}
+.terminoMunicipal {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: #959595;
+  margin-bottom: 5px;
+
 }
 
-mat-card-content {
-  min-height: 9rem;
-  max-height: 9rem;
+.beachName {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  color: #2196F3;
+  cursor: pointer;
 }
 
+.hr {
+  width: 25px;
+  height: 2px;
+  margin-top: 8px;
+  background-color: #000;
+}
+
+.featureList {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap
+}

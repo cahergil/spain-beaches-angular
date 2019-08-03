@@ -1,42 +1,18 @@
-<mat-card class="card" [ngClass]="applyHeaderBackgroundColor()">
-  <mat-card-header >
-    <img mat-card-avatar [src]="isBlueFlag ? banderaAzulPath: normalBeachPath"  matTooltip="blue flag beach"
-      matTooltipPosition="above">
-    <mat-card-title
-      matTooltip="beach name"
-      matTooltipPosition="right"
-      [ngClass]="applyTitleColor()"
-      >
-      {{ beachItem.nombre }}
-    </mat-card-title>
-    <mat-card-subtitle
-      matTooltip="locality (town, city)"
-      matTooltipPosition="right"
-      [ngClass]="applySubtitleColor()"
-      >
-      {{ beachItem.termino_municipal}}
-    </mat-card-subtitle>
-  </mat-card-header>
-   <img
-    mat-card-image
-    [hidden]="!loading"
-    class="image"
-    src="./assets/images/loader.gif"
-    alt="loading" />
+<div class="root">
+  <div class="imageWrapper" (click)="onDetailsClick()">
+    <img [hidden]="!loading" class="image" src="./assets/images/loader.gif" alt="loading" />
 
-  <img
-    mat-card-image
-    [hidden]="loading"
-    src="{{images[images.length -1]}}"
-    appFallbackSrc="{{defautImagePath}}"
-    class="image"
-    (load)="onLoad()"
-    alt="Photo of {{beachItem.nombre}}">
-  <mat-card-actions>
-    <button
-      mat-stroked-button
-      [color]="isBlueFlag ? 'primary':'accent'"
-      (click)="onDetailsClick()"
-      >DETAILS</button>
-  </mat-card-actions>
-</mat-card>
+    <img  [hidden]="loading" src="{{images[images.length -1]}}" appFallbackSrc="{{defautImagePath}}"
+      class="image" (load)="onLoad()" alt="Photo of {{beachItem.nombre}}">
+    <!-- <div class="remainingImagesCount">{{remainingImages}}</div> -->
+  </div>
+  <div class="terminoMunicipal">{{beachItem.termino_municipal}}</div>
+  <div class="beachName" (click)="onDetailsClick()">{{beachItem.nombre.concat(' beach')}}</div>
+  <div class="hr"></div>
+  <div class="featureList">
+    <app-feature-item
+      *ngFor="let feature of featureList"
+      [feature]="feature"
+      ></app-feature-item>
+  </div>
+</div>

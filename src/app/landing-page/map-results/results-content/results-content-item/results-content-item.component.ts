@@ -20,37 +20,26 @@ export class ResultsContentItemComponent implements OnInit {
   public isBlueFlag: boolean;
   public loading = true;
   public images: string[] = [];
+  public featureList: string[] = [];
   constructor(private ref: ChangeDetectorRef, private router: Router, private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
     this.images = this.beachItem.images.split(',');
     this.isBlueFlag = this.beachItem.bandera_azul === 'Sí' ? true : false;
+    const length = this.beachItem.longitud.replace('metros', 'm').replace(',', '.');
+    const lifeGuard = this.beachItem.auxilio_y_salvamento === 'Sí' ? 'lifeguard' : null;
+    const nudism = this.beachItem.nudismo === 'Sí' ? 'nudism' : null;
+    const surf = this.beachItem.zona_surf === 'Sí' ? 'surf' : null;
+    const beachBar = this.beachItem.establecimiento_comida === 'Sí' ? 'beach bar' : null;
+    const shower = this.beachItem.duchas === 'Sí' ? 'shower' : null;
+    const blueFlag = this.beachItem.bandera_azul === 'Sí' ? 'blue flag' : null;
+    const diving = this.beachItem.submarinismo === 'Sí' ? 'diving' : null;
+    this.featureList.push(length, shower, beachBar, lifeGuard, nudism, surf, diving, blueFlag);
+
+    this.featureList = this.featureList.filter(feature => feature !== null);
 
   }
 
-  applyHeaderBackgroundColor() {
-    const classes = {
-      cardHeaderPrimaryBackgroundColor: this.isBlueFlag,
-      cardHeaderAccentBackgroundColor: !this.isBlueFlag
-    };
-    return classes;
-
-  }
-  applyTitleColor() {
-    const classes = {
-      cardTitleBlueFlag: this.isBlueFlag,
-      cardTitleNoBlueFlag: !this.isBlueFlag
-    };
-    return classes;
-  }
-
-  applySubtitleColor() {
-    const classes = {
-      cardSubTitleBlueFlagColor: this.isBlueFlag,
-      cardSubTitleNoBlueFlagColor: !this.isBlueFlag
-    };
-    return classes;
-  }
 
   onLoad() {
     this.loading = false;

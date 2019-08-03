@@ -46,6 +46,7 @@ export class ResultsContentComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onScroll(): void {
+    console.log('onScroll');
     if (this.reachedEnd) {
       return;
     }

@@ -50,6 +50,7 @@ import { DetailsTitleComponent } from './details/details-title/details-title.com
 import { SectionTitleComponent } from './details/facilities/section-title/section-title.component';
 import { TranslateTextComponent } from './details/translate-text/translate-text.component';
 import { SearchFiltersMobileComponent } from './search/search-filters-mobile/search-filters-mobile.component';
+import { DrawerComponent } from './search/search-filters-mobile/drawer/drawer.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { SearchFiltersMobileComponent } from './search/search-filters-mobile/sea
     DetailsTitleComponent,
     SectionTitleComponent,
     TranslateTextComponent,
-    SearchFiltersMobileComponent
+    SearchFiltersMobileComponent,
+    DrawerComponent
 
 
 

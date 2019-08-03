@@ -40,7 +40,7 @@ export class ResultsContentComponent implements OnInit, OnChanges, OnDestroy {
   }
   ngOnChanges(changes: SimpleChanges) {
     const key = 'list';
-    if (changes[key].currentValue.length > 0) {
+    if (changes[key].currentValue.length >= 0) {
       this.loadData();
     }
   }

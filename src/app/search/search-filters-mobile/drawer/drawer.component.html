@@ -1,0 +1,154 @@
+<div class="root">
+  <div class="drawerHeader">
+    <div style="color: #fff">Filters</div>
+    <div class="doneStyle" style="color: #fff" (click)="toggleDrawer()">Done</div>
+  </div>
+  <!-- CONTAIN TEXT -->
+  <div class="drawerSubheader">
+    <div>Contain text</div>
+  </div>
+  <div class="wrapper">
+    <form >
+      <mat-form-field style="margin-top: 2rem; width: 10rem">
+        <mat-label>Select by</mat-label>
+        <mat-select [(value)]="filters.selectText" (selectionChange)="onSelectionChange($event.value)">
+          <mat-option value="termino_municipal">
+            Locality
+          </mat-option>
+          <mat-option value="nombre">
+            Beach name
+          </mat-option>
+          <mat-option value="comunidad_autonoma">
+            Region
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field style="text-align: left; margin-left: 2rem" >
+        <input matInput placeholder="Contain text" [formControl]="inputControl" [value]="filters.searchText">
+      </mat-form-field>
+
+    </form>
+  </div>
+  <!-- TYPE OF BEACH -->
+  <div class="drawerSubheader" style="margin-top: 1rem">
+    <div>Type of beach</div>
+  </div>
+  <mat-list class="typeOfBeachListRoot">
+    <mat-list-item>
+      <mat-checkbox [checked]="filters.nudism" (change)="checkBoxHandler($event,'nudism')" color="accent">Nudism
+      </mat-checkbox>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <mat-checkbox [checked]="filters.blueFlag" (change)="checkBoxHandler($event,'blueFlag')" color="accent">Blue flag
+      </mat-checkbox>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <div fxLayout="column" style="margin: 2rem">
+      <p style="font-size: 1.7rem">Beach max length</p>
+      <div fxLayout fxLayoutAlign="center center">
+        <p>50 m</p>
+        <mat-slider min="0" max="100" [value]="beachLengthSliderValue" style="width: 30rem"
+          (change)=onChangeSliderBeachLength($event) [formControl]="beachLengthSliderControl">
+        </mat-slider>
+        <p style="margin-left: 1rem">28k m</p>
+      </div>
+      <p fxFlexAlign="center">
+        <span style="color: #D4AC16; font-style: bold; font-size: 2rem">{{filters.beachLength}}
+        </span>
+        meters
+      </p>
+    </div>
+  </mat-list>
+  <!-- SERVICES -->
+  <div class="drawerSubheader">
+    <div>Services</div>
+  </div>
+  <mat-list class="servicesListRoot">
+    <mat-list-item>
+      <mat-checkbox [checked]="filters.surfingArea" (change)="checkBoxHandler($event,'surfingArea')" color="accent">
+        Surfing area</mat-checkbox>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <mat-checkbox [checked]="filters.beachBar" (change)="checkBoxHandler($event,'beachBar')" color="accent">Beach Bar
+      </mat-checkbox>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <mat-checkbox [checked]="filters.nauticsRental" (change)="checkBoxHandler($event,'nauticsRental')" color="accent">
+        Nautics rental</mat-checkbox>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <mat-checkbox [checked]="filters.divingArea" (change)="checkBoxHandler($event,'divingArea')" color="accent">Diving
+        area</mat-checkbox>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <mat-checkbox [checked]="filters.sunbedRental" (change)="checkBoxHandler($event,'sunbedRental')" color="accent">
+        Sunbed rental</mat-checkbox>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <mat-checkbox [checked]="filters.beachUmbrellaRental" (change)="checkBoxHandler($event,'beachUmbrellaRental')"
+        color="accent">Beach umbrella rental</mat-checkbox>
+    </mat-list-item>
+  </mat-list>
+  <!-- GENERAL -->
+  <div class="drawerSubheader">
+    <div>General</div>
+  </div>
+    <mat-list class="generalListRoot">
+      <mat-list-item>
+        <mat-checkbox [checked]="filters.promenade" (change)="checkBoxHandler($event,'promenade')" color="accent">Promenade
+        </mat-checkbox>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <mat-checkbox [checked]="filters.disabledPersons" (change)="checkBoxHandler($event,'disabledPersons')"
+          color="accent">Disabled persons</mat-checkbox>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <form>
+        <mat-form-field style="margin-top: 1rem; margin-left: 2rem ;width: 13rem">
+          <mat-label style="color: #fff">Select by</mat-label>
+          <mat-select [(value)]="filters.occupancy" (selectionChange)="onOccupancyChange($event.value)">
+            <mat-option value="All">
+              <em>All</em>
+            </mat-option>
+            <mat-option value="Alto">
+              High
+            </mat-option>
+            <mat-option value="Medio">
+              Average
+            </mat-option>
+            <mat-option value="Bajo">
+              Low
+            </mat-option>
+            <mat-option value="Medio / Alto">
+              Average / High
+            </mat-option>
+            <mat-option value="Medio / Bajo">
+              Average / Low
+            </mat-option>
+            <mat-option value="Muy bajo">
+              Very Low
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+      <mat-divider></mat-divider>
+      <div fxLayout="column" style="margin: 2rem">
+        <p style="font-size: 1.7rem">Distance to hospital</p>
+        <div fxLayout fxLayoutAlign="center center">
+          <p>0 Km</p>
+          <mat-slider min="0" max="120" [value]="hospitalDistanceSliderValue" style="width: 22rem" thumbLabel
+            (change)="onChangeSliderHospitalDistance($event)" [formControl]="hospitalDistanceControl">
+          </mat-slider>
+          <p style="margin-left: 1rem">120km</p>
+        </div>
+
+      </div>
+    </mat-list>
+</div>

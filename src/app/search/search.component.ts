@@ -37,6 +37,8 @@ export class SearchComponent implements OnInit, OnDestroy {
         console.log(width);
         if (width <= 900) {
           this.isMobile = true;
+        } else {
+          this.isMobile = false;
         }
       });
   }

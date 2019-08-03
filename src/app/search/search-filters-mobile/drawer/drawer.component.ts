@@ -6,20 +6,20 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatSliderChange } from '@angular/material/slider';
 
-import * as fromSearchReducer from '../store/search.reducer';
-import * as searchFiltersAction from '../store/search.actions';
-import * as fromApp from '../../store/app.reducers';
-import * as utils from '../../utils/utils';
+import * as fromSearchReducer from '../../store/search.reducer';
+import * as searchFiltersAction from '../../store/search.actions';
+import * as fromApp from '../../../store/app.reducers';
+import * as utils from '../../../utils/utils';
 
 @Component({
-  selector: 'app-search-filters-mobile',
-  templateUrl: './search-filters-mobile.component.html',
-  styleUrls: ['./search-filters-mobile.component.scss']
+  selector: 'app-drawer',
+  templateUrl: './drawer.component.html',
+  styleUrls: ['./drawer.component.scss']
 })
-export class SearchFiltersMobileComponent implements OnInit, OnDestroy {
+export class DrawerComponent implements OnInit, OnDestroy {
 
   @Input() filters: fromSearchReducer.State;
-  @Output() drawerToggle = new EventEmitter<void>();
+  @Output() closeDrawer = new EventEmitter<void>();
 
   subscriptionInputControl: Subscription;
   subscriptionBeachLenghtControl: Subscription;
@@ -34,6 +34,7 @@ export class SearchFiltersMobileComponent implements OnInit, OnDestroy {
   constructor(private ref: ChangeDetectorRef, private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
+
     this.utils = utils;
     this.inputControl = new FormControl(this.filters.searchText);
     this.beachLengthSliderControl = new FormControl(this.filters.beachLength);
@@ -45,10 +46,6 @@ export class SearchFiltersMobileComponent implements OnInit, OnDestroy {
     this.onHospitalDistanceSliderChange();
   }
 
-  onToggleSidenav() {
-    console.log('click');
-    this.drawerToggle.emit();
-  }
   checkBoxHandler = (event: MatCheckboxChange, name: string) => {
     if (name === 'nudism') {
       this.store.dispatch(new searchFiltersAction.SetNudism(event.checked));
@@ -77,12 +74,12 @@ export class SearchFiltersMobileComponent implements OnInit, OnDestroy {
     this.store.dispatch(new searchFiltersAction.SetSelectText(value));
     this.store.dispatch(new searchFiltersAction.SetSearchText(''));
   }
-
   onOccupancyChange(value: string) {
 
     this.store.dispatch(new searchFiltersAction.SetOccupancy(value));
   }
 
+  // change observables
   onInputChanges() {
     this.subscriptionInputControl = this.inputControl.valueChanges
       .pipe(
@@ -92,7 +89,6 @@ export class SearchFiltersMobileComponent implements OnInit, OnDestroy {
         this.store.dispatch(new searchFiltersAction.SetSearchText(val));
       });
   }
-
   onLengthSliderChange() {
 
     this.beachLengthSliderControl.valueChanges
@@ -105,7 +101,6 @@ export class SearchFiltersMobileComponent implements OnInit, OnDestroy {
         this.store.dispatch(new searchFiltersAction.SetBeachLength(value));
       });
   }
-
   onHospitalDistanceSliderChange() {
     this.hospitalDistanceControl.valueChanges
       .pipe(debounceTime(200)
@@ -125,6 +120,9 @@ export class SearchFiltersMobileComponent implements OnInit, OnDestroy {
     this.store.dispatch(new searchFiltersAction.SetResetFilters());
   }
 
+  toggleDrawer() {
+    this.closeDrawer.emit();
+  }
   ngOnDestroy() {
     if (this.subscriptionBeachLenghtControl) {
       this.subscriptionBeachLenghtControl.unsubscribe();

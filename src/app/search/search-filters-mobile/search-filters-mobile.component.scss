@@ -1,0 +1,32 @@
+.rootMobile {
+  height: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.7rem;
+  padding: 1rem;
+  background-color: #2196F3;
+  border-radius: 5px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.textStyle {
+  color: #fff;
+}
+
+.drawerRoot {
+  overflow-y: scroll;
+}
+
+
+.sidedrawer {
+  background-color: #2196F3 !important
+}

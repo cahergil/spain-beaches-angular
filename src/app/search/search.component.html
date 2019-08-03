@@ -1,25 +1,34 @@
-<section class="rootWrap">
-  <div class="root">
-    <p class="title">
-      Advanced Search
-    </p>
-    <div *ngIf="!isMobile">
-      <app-search-filters
-        [filters]="filters">
-      </app-search-filters>
-    </div>
-    <div *ngIf="isMobile">
-      <app-search-filters-mobile [filters]="filters">
-
-      </app-search-filters-mobile>
-    </div>
-    <div fxLayout fxLayoutAlign="center center" *ngIf="loading">
-      <mat-spinner>
-      </mat-spinner>
-    </div>
-    <app-results-content
-      *ngIf="!loading"
-      [list]="filteredList"
-    ></app-results-content>
-  </div>
-</section>
+<mat-drawer-container  >
+  <mat-drawer #drawer mode="over" [autoFocus]="false">
+    <app-drawer [filters]="filters"
+      (closeDrawer)="drawer.close()"></app-drawer>
+  </mat-drawer>
+  <mat-drawer-content>
+    <section class="rootWrap">
+      <div class="root">
+        <p class="title">
+          Advanced Search
+        </p>
+        <div *ngIf="!isMobile">
+          <app-search-filters
+            [filters]="filters">
+          </app-search-filters>
+        </div>
+        <div *ngIf="isMobile">
+          <app-search-filters-mobile
+          [filters]="filters"
+          (drawerToggle)="drawer.toggle()">
+          </app-search-filters-mobile>
+        </div>
+        <div fxLayout fxLayoutAlign="center center" *ngIf="loading">
+          <mat-spinner>
+          </mat-spinner>
+        </div>
+        <app-results-content
+          *ngIf="!loading"
+          [list]="filteredList"
+        ></app-results-content>
+      </div>
+    </section>
+  </mat-drawer-content>
+</mat-drawer-container >

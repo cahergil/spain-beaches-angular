@@ -46,13 +46,15 @@ export class ResultsContentComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onScroll(): void {
-    console.log('onScroll');
     if (this.reachedEnd) {
       return;
     }
     if (this.offset + this.step <= this.list.length) {
       this.offset += this.step;
-    } else {
+      // when refreshing the page , the first thing to come is an empty array [], this makes the variable reachedEnd= true
+      // to avoid that add the following: && this.list.length !== 0
+    } else if (this.offset + this.step > this.list.length && this.list.length !== 0) {
+      console.log(this.list.length + ',' + this.offset);
       this.offset += (this.list.length - this.offset);
       this.reachedEnd = true;
     }

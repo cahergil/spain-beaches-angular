@@ -28,13 +28,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   catchMobileWidth() {
     const resize$ = fromEvent(window, 'resize')
       .pipe(
-        debounceTime(200),
+        // debounceTime(200),
         map(() => window.innerWidth),
         distinctUntilChanged(),
         startWith(window.innerWidth)
       )
       .subscribe(width => {
-        console.log(width);
+
         if (width <= 900) {
           this.isMobile = true;
         } else {

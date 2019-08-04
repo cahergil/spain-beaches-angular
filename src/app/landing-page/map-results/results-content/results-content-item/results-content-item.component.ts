@@ -1,11 +1,7 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, NgZone } from '@angular/core';
 import { Playa } from 'src/app/playas.model';
 import { Router } from '@angular/router';
 
-import * as fromApp from '../../../../store/app.reducers';
-import * as fromNavigationActions from '../../../../navigation/header/store/header.actions';
-
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-results-content-item',
@@ -14,14 +10,14 @@ import { Store } from '@ngrx/store';
 })
 export class ResultsContentItemComponent implements OnInit {
   @Input() beachItem: Playa;
+  @Input() remainingPhotos: number;
   public defautImagePath = './assets/images/image_na.png';
-  public banderaAzulPath = './assets/images/blue_flag_mini.png';
-  public normalBeachPath = './assets/images/normal_beach.png';
   public isBlueFlag: boolean;
   public loading = true;
   public images: string[] = [];
   public featureList: string[] = [];
-  constructor(private ref: ChangeDetectorRef, private router: Router, private store: Store<fromApp.AppState>) { }
+  public remainingImages: string;
+  constructor(private ref: ChangeDetectorRef, private router: Router, private ngZone: NgZone) { }
 
   ngOnInit() {
     this.images = this.beachItem.images.split(',');
@@ -36,6 +32,12 @@ export class ResultsContentItemComponent implements OnInit {
     const diving = this.beachItem.submarinismo === 'Sí' ? 'diving' : null;
     this.featureList.push(length, shower, beachBar, lifeGuard, nudism, surf, diving, blueFlag);
 
+    if (this.remainingPhotos <= 0) {
+      this.remainingImages = '';
+    } else {
+      this.remainingImages = '+' + this.remainingPhotos;
+    }
+
     this.featureList = this.featureList.filter(feature => feature !== null);
 
   }
@@ -47,7 +49,8 @@ export class ResultsContentItemComponent implements OnInit {
   }
 
   onDetailsClick() {
-    // this.store.dispatch(new fromNavigationActions.SetNavigationVisible(false));
-    this.router.navigate(['/details'], { queryParams: { id: this.beachItem.id } });
+    this.ngZone.run(() => {
+      this.router.navigate(['/details'], { queryParams: { id: this.beachItem.id } });
+    });
   }
 }

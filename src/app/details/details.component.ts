@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { filter, map, first, mergeMap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import * as fromNavigation from '../navigation/header/store/header.actions';
+
 import {AppState} from '../store/app.reducers';
 import { Playa } from '../playas.model';
-import { GeneralInfoComponent } from './presentation/general-info/general-info.component';
+import { getDistance, parseCoordinate } from '../utils/utils';
 
 @Component({
   selector: 'app-details',
@@ -31,12 +31,9 @@ export class DetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     nombre_alternativo: 'nombre_alternativo',
     nombre_alternativo_2: 'nombre_alternativo_2'
   };
-  public beachCoordinates: { lat: number, lng: number } = {
-    lat: 0,
-    lng: 0
-  };
   public beachName: string;
-
+  public nearbyBeaches: Playa[];
+  public nearbyRadius = 15000;
   constructor(private route: ActivatedRoute, private store: Store<AppState>) { }
 
   ngOnInit() {
@@ -44,38 +41,40 @@ export class DetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.route.queryParams
       .pipe(
         filter(params => params.id)
-      )
-      .subscribe(params => {
-        this.beachId = params.id;
-        this.store.select('beachesList')
-          .pipe(
-            map(beachesList => beachesList.beaches),
-            map((beaches: Playa[]) => beaches.filter(beach => beach.id === this.beachId)[0])
-             // this also would be ok
-             // flatMap aka mergeMap, flattens the array
-             // mergeMap(beachesList => beachesList.beaches),
-             // filter(beach => beach.id === this.beachId)
-           )
-          .subscribe(beach => {
-            if (beach !== undefined) {
-              this.beach = beach;
-              this.isBlueFlag = this.beach.bandera_azul === 'Sí' ? true : false;
-              this.generalInfo[this.generalInfoStrings.termino_municipal] = beach.termino_municipal;
-              this.generalInfo[this.generalInfoStrings.provincia] = beach.provincia;
-              this.generalInfo[this.generalInfoStrings.comunidad_autonoma] = beach.comunidad_autonoma;
-              this.generalInfo[this.generalInfoStrings.longitud] = beach.longitud;
-              this.generalInfo[this.generalInfoStrings.anchura] = beach.anchura;
-              this.generalInfo[this.generalInfoStrings.grado_ocupacion] = beach.grado_ocupacion;
-              this.generalInfo[this.generalInfoStrings.paseo_maritimo] = beach.paseo_maritimo;
-              this.generalInfo[this.generalInfoStrings.descripcion] = beach.descripcion;
-              this.generalInfo[this.generalInfoStrings.images] = beach.images;
-              this.generalInfo[this.generalInfoStrings.nombre_alternativo] = beach.nombre_alternativo;
-              this.generalInfo[this.generalInfoStrings.nombre_alternativo_2] = beach.nombre_alternativo_2;
-              this.beachCoordinates.lat = parseFloat(this.beach.coordenada_y.replace(',', '.'));
-              this.beachCoordinates.lng = parseFloat(this.beach.coordenada_x.replace(',', '.'));
-              this.beachName = beach.nombre;
-
-            }
+      ).subscribe(params => {
+          this.beachId = params.id;
+          this.store.select('beachesList')
+            .pipe(
+              map(beachesList => beachesList.beaches)
+            )
+            .subscribe(beaches => {
+              if (beaches.length > 0) {
+                const foundBeach = beaches.filter(beach => beach.id === this.beachId)[0];
+                const beachLatLng: { lat: number, lng: number } = {lat: undefined, lng: undefined};
+                beachLatLng.lat = parseCoordinate(foundBeach.coordenada_y);
+                beachLatLng.lng = parseCoordinate(foundBeach.coordenada_x);
+                const nearbyBeaches = beaches.filter(beach => {
+                  const lat = parseCoordinate(beach.coordenada_y);
+                  const lng = parseCoordinate(beach.coordenada_x);
+                  return getDistance(beachLatLng, { lat, lng }) <= this.nearbyRadius && beach.id !== this.beachId;
+                });
+                nearbyBeaches.unshift(foundBeach);
+                this.nearbyBeaches = nearbyBeaches;
+                this.beach = foundBeach;
+                this.isBlueFlag = this.beach.bandera_azul === 'Sí' ? true : false;
+                this.generalInfo[this.generalInfoStrings.termino_municipal] = foundBeach.termino_municipal;
+                this.generalInfo[this.generalInfoStrings.provincia] = foundBeach.provincia;
+                this.generalInfo[this.generalInfoStrings.comunidad_autonoma] = foundBeach.comunidad_autonoma;
+                this.generalInfo[this.generalInfoStrings.longitud] = foundBeach.longitud;
+                this.generalInfo[this.generalInfoStrings.anchura] = foundBeach.anchura;
+                this.generalInfo[this.generalInfoStrings.grado_ocupacion] = foundBeach.grado_ocupacion;
+                this.generalInfo[this.generalInfoStrings.paseo_maritimo] = foundBeach.paseo_maritimo;
+                this.generalInfo[this.generalInfoStrings.descripcion] = foundBeach.descripcion;
+                this.generalInfo[this.generalInfoStrings.images] = foundBeach.images;
+                this.generalInfo[this.generalInfoStrings.nombre_alternativo] = foundBeach.nombre_alternativo;
+                this.generalInfo[this.generalInfoStrings.nombre_alternativo_2] = foundBeach.nombre_alternativo_2;
+                this.beachName = foundBeach.nombre;
+              }
           });
 
       });

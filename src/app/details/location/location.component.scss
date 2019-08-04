@@ -1,3 +1,15 @@
 agm-map {
-  height: 40rem;
+  height: 60rem;
+}
+.image {
+  object-fit: cover;
+  width: 25rem;
+}
+.go {
+  color: #1B5E20;
+  margin: 1rem;
+  cursor: pointer;
+  &:hover {
+    color: #4CAF50;
+  }
 }

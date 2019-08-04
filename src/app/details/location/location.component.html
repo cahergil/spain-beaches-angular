@@ -1,5 +1,30 @@
-<agm-map [latitude]="beachCoordinates.lat" [longitude]="beachCoordinates.lng">
-  <agm-marker [latitude]="beachCoordinates.lat" [longitude]="beachCoordinates.lng">
-    <agm-info-window [isOpen]="true">{{name}}</agm-info-window>
-  </agm-marker>
+<agm-map *ngIf="ready"
+[latitude]="parseCoordinate(surroundingBeaches[0]['coordenada_y'])"
+[longitude]="parseCoordinate(surroundingBeaches[0]['coordenada_x'])"
+[zoom]=12
+[fitBounds]="true"
+[scaleControl]="true"
+[mapTypeControl]="true"
+
+>
+  <agm-marker *ngFor="let nearbyBeach of surroundingBeaches; let i = index"
+    [latitude]="parseCoordinate(nearbyBeach['coordenada_y'])"
+    [longitude]="parseCoordinate(nearbyBeach['coordenada_x'])"
+    [agmFitBounds]="true"
+    [iconUrl]="i=== 0 ? isBlueFlag ? './assets/images/bfpin.png':'./assets/images/nbpin.png': ''"
+    >
+    <agm-snazzy-info-window [isOpen]="i === 0" [maxWidth]="400" [maxHeight]="300" [closeWhenOthersOpen]="true">
+      <ng-template>
+        <div (click)="onClickInfoWindow(nearbyBeach.id)" class="go">
+        <div>
+          {{nearbyBeach['nombre']}}
+        </div>
+        <img
+          src="{{nearbyBeach.images.split(',')[nearbyBeach.images.split(',').length -1]}}"
+          class="image"
+          alt="{{nearbyBeach.nombre}}">
+        </div>
+      </ng-template>
+    </agm-snazzy-info-window>
+   </agm-marker>
 </agm-map>

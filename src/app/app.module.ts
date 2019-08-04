@@ -12,7 +12,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AngularFittextModule } from 'angular-fittext';
+
 
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { HeaderComponent } from './navigation/header/header.component';
@@ -113,7 +115,9 @@ import { FeatureItemComponent } from './landing-page/map-results/results-content
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBzE15BZUN0Xhhx0OzkMKNlaII7QX4p6GU'
     }),
+    AgmSnazzyInfoWindowModule,
     AngularFittextModule
+
 
   ],
   providers: [AmChartsService],

@@ -17,7 +17,7 @@
       <ng-template>
         <div (click)="onClickInfoWindow(nearbyBeach.id)" class="go">
         <div>
-          {{nearbyBeach['nombre']}}
+          {{nearbyBeach['nombre'].concat(' beach')}}
         </div>
         <img
           src="{{nearbyBeach.images.split(',')[nearbyBeach.images.split(',').length -1]}}"

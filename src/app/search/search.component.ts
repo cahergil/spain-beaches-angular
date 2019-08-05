@@ -7,7 +7,7 @@ import * as fromSearchReducer from './store/search.reducer';
 import * as searchFiltersAction from './store/search.actions';
 import * as fromApp from '../store/app.reducers';
 import * as utilities from '../utils/utils';
-import { map, filter, first, debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
+import { map, distinctUntilChanged, startWith } from 'rxjs/operators';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -19,14 +19,17 @@ export class SearchComponent implements OnInit, OnDestroy {
   public filteredList: Playa[] = [];
   public loading = true;
   private subscription: Subscription;
+  private resizeSubscription: Subscription;
   public utils;
   public isMobile = false;
+  public video500 = false;
+  public video900 = false;
   constructor(private store: Store<fromApp.AppState>, private ref: ChangeDetectorRef) {
     this.catchMobileWidth();
   }
 
   catchMobileWidth() {
-    const resize$ = fromEvent(window, 'resize')
+     this.resizeSubscription = fromEvent(window, 'resize')
       .pipe(
         // debounceTime(200),
         map(() => window.innerWidth),
@@ -34,11 +37,18 @@ export class SearchComponent implements OnInit, OnDestroy {
         startWith(window.innerWidth)
       )
       .subscribe(width => {
-
-        if (width <= 900) {
+        if (width <= 500) {
+          this.video500 = true;
           this.isMobile = true;
+          this.video900 = false;
+        } else if (width <= 900) {
+          this.isMobile = true;
+          this.video500 = false;
+          this.video900 = true;
         } else {
           this.isMobile = false;
+          this.video500 = false;
+          this.video900 = false;
         }
       });
   }
@@ -135,13 +145,16 @@ export class SearchComponent implements OnInit, OnDestroy {
                 return beach[key] === filterObject[key];
               }); // key.every
             }); // filter
-          });
+          }); // second subscribe
       }); // first subscribe
   }
 
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+    if (this.resizeSubscription) {
+      this.resizeSubscription.unsubscribe();
     }
   }
 }

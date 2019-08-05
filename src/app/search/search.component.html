@@ -6,9 +6,28 @@
   <mat-drawer-content>
     <section class="rootWrap">
       <div class="root">
-        <p class="title">
-          Advanced Search
-        </p>
+        <div class=videoFull *ngIf="!isMobile">
+          <video  autoplay muted loop>
+            <source src="./assets/videos/video_compressed.mp4" type="video/mp4">
+          Your browser is not supported!
+          </video>
+        </div>
+        <div class=video900 *ngIf="video900">
+          <video  autoplay muted loop>
+            <source src="./assets/videos/video_compressed.mp4" type="video/mp4">
+          Your browser is not supported!
+          </video>
+        </div>
+        <div class=video500 *ngIf="video500">
+          <video  autoplay muted loop>
+            <source src="./assets/videos/videoMp4Width500.mp4" type="video/mp4">
+          Your browser is not supported!
+          </video>
+        </div>
+        <div class="titleWrapper">
+          <span class="title">Advanced Search
+          </span>
+        </div>
         <div *ngIf="!isMobile">
           <app-search-filters
             [filters]="filters">

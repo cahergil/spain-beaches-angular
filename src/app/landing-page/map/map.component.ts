@@ -1,10 +1,16 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, NgZone } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+  NgZone
+} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AmChartsService, AmChart } from '@amcharts/amcharts3-angular';
 
 import { regionMap } from './mapTypes';
 import * as fromApp from '../../store/app.reducers';
-import * as  regionMapActions from './store/map.actions';
+import * as regionMapActions from './store/map.actions';
 
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
@@ -15,14 +21,11 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
-
   private chart: AmChart;
   private areaColor = '#BDBDBD';
   private mapComunidades = new Map();
   private preSelectedArea: string;
   private mapObject;
-
-
 
   constructor(
     private AmCharts: AmChartsService,
@@ -31,18 +34,22 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     private zone: NgZone,
     private store: Store<fromApp.AppState>
   ) {
-
-    this.store.select('mapRegion')
-      .pipe(
-        map(e => e.region)
-      )
+    this.store
+      .select('mapRegion')
+      .pipe(map(e => e.region))
       .subscribe(region => {
         this.preSelectedArea = region;
       });
   }
-
-  handlePreSelect = (e) => {
-
+  resetMap() {
+    const area = this.mapObject.getObjectById(this.preSelectedArea);
+    if (area) {
+      area.showAsSelected = false;
+      this.mapObject.returnInitialColor(area);
+      this.store.dispatch(new regionMapActions.SetMapRegion(''));
+    }
+  }
+  handlePreSelect = e => {
     const mapObj = e.chart;
     this.mapObject = mapObj;
     const area = mapObj.getObjectById(this.preSelectedArea);
@@ -50,7 +57,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       area.showAsSelected = true;
       mapObj.returnInitialColor(area);
     }
-  }
+  };
   ngOnInit() {
     this.mapComunidades.set('ES-AN', regionMap.ANDALUCIA);
     this.mapComunidades.set('ES-AS', regionMap.ASTURIAS);
@@ -82,8 +89,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
           { id: 'ES-MC', color: this.areaColor },
           { id: 'ES-ML', color: this.areaColor },
           { id: 'ES-PV', color: this.areaColor },
-          { id: 'ES-VC', color: this.areaColor },
-
+          { id: 'ES-VC', color: this.areaColor }
         ]
       },
       areasSettings: {
@@ -98,21 +104,21 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       zoomControl: {
         homeButtonEnabled: false,
         zoomControlEnabled: false,
-        panControlEnabled: false,
+        panControlEnabled: false
       },
       listeners: [
         {
           event: 'init',
-          method: (e) => { this.handlePreSelect(e); }
+          method: e => {
+            this.handlePreSelect(e);
+          }
         }
       ]
     });
     this.chart.addListener('clickMapObject', this.handleRegionClick);
-
-
   }
 
-  handleRegionClick = (e) => {
+  handleRegionClick = e => {
     const areaId = e.mapObject.id;
     const region = this.mapComunidades.get(e.mapObject.id);
     // unselect previous selected area
@@ -125,21 +131,18 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.store.dispatch(new regionMapActions.SetMapRegion(areaId));
 
     this.zone.run(() => {
-
-      this.router.navigate([region], { relativeTo: this.route })
+      this.router
+        .navigate([region], { relativeTo: this.route })
         .then(success => {
           // console.log('router.navigate', success);
           const resultId = document.getElementById('results');
           resultId.scrollIntoView({ behavior: 'smooth' });
-
         });
-
     });
-  }
+  };
   ngOnDestroy() {
     if (this.chart) {
       this.AmCharts.destroyChart(this.chart);
     }
-
   }
 }

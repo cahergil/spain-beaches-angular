@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import {  Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { filter } from 'rxjs/operators';
 
@@ -14,14 +14,13 @@ import * as regionMapActions from '../../landing-page/map/store/map.actions';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  public navigationVisible$: Observable<{navigationVisible: boolean}>;
+  public navigationVisible$: Observable<{ navigationVisible: boolean }>;
   @Output() sidenavToggle = new EventEmitter<void>();
   public isDetails = false;
   constructor(
     private store: Store<fromApp.AppState>,
-    private router: Router,
-    // private location: Location
-  ) { }
+    private router: Router // private location: Location
+  ) {}
 
   ngOnInit() {
     // solution 1
@@ -36,9 +35,7 @@ export class HeaderComponent implements OnInit {
     // solution 2: the best
     // https://medium.com/@nsrathore/router-event-handling-angular-5-5-2-0-723bfe39cdf1
     this.router.events
-      .pipe(
-        filter(e => e instanceof NavigationEnd)
-      )
+      .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe((navEnd: NavigationEnd) => {
         if (navEnd.urlAfterRedirects.startsWith('/details')) {
           this.isDetails = true;
@@ -53,9 +50,5 @@ export class HeaderComponent implements OnInit {
   }
   onToggleSidenav() {
     this.sidenavToggle.emit();
-  }
-
-  onClickSection() {
-    this.store.dispatch(new regionMapActions.SetMapRegion(''));
   }
 }

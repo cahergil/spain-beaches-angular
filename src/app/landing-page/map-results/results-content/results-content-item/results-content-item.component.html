@@ -1,18 +1,30 @@
 <div class="root">
   <div class="imageWrapper" (click)="onDetailsClick()">
-    <img [hidden]="!loading" class="image" src="./assets/images/loader.gif" alt="loading" />
+    <img
+      [hidden]="!loading"
+      class="image"
+      src="./assets/images/loader.gif"
+      alt="loading"
+    />
 
-    <img  [hidden]="loading" src="{{images[images.length -1]}}" appFallbackSrc="{{defautImagePath}}"
-      class="image" (load)="onLoad()" alt="Photo of {{beachItem.nombre}}">
-    <div class="remainingImagesCount">{{remainingImages}}</div>
+    <img
+      [hidden]="loading"
+      src="{{ images[images.length - 1] }}"
+      appFallbackSrc="{{ defautImagePath }}"
+      class="image"
+      (load)="onLoad()"
+      alt="Photo of {{ beachItem.nombre }}"
+    />
+    <div class="remainingImagesCount">{{ remainingImages }}</div>
   </div>
-  <div class="terminoMunicipal">{{beachItem.termino_municipal}}</div>
-  <div class="beachName" (click)="onDetailsClick()">{{beachItem.nombre.concat(' beach')}}</div>
+  <div class="terminoMunicipal">{{ beachItem.termino_municipal }}</div>
+  <div class="beachName" (click)="onDetailsClick()">
+    {{ beachItem.nombre.concat(' beach') }}
+  </div>
   <div class="hr"></div>
-  <div class="featureList">
-    <app-feature-item
-      *ngFor="let feature of featureList"
-      [feature]="feature"
-      ></app-feature-item>
-  </div>
+  <ul class="featureList">
+    <li *ngFor="let feature of featureList">
+      <app-feature-item [feature]="feature"></app-feature-item>
+    </li>
+  </ul>
 </div>

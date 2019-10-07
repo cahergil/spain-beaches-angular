@@ -65,8 +65,12 @@
 }
 
 .featureList {
+  list-style: none;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  flex-wrap: wrap
-}
+  flex-wrap: wrap;
+  li {
+    display: 'inline-block'
+  }
+}  

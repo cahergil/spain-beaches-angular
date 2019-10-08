@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 //   navigate(params) {}
 // }
 
-fdescribe('ResultsContentItemComponent', () => {
+describe('ResultsContentItemComponent', () => {
   let component: ResultsContentItemComponent;
   let fixture: ComponentFixture<ResultsContentItemComponent>;
   let beach: Playa;
@@ -109,7 +109,7 @@ fdescribe('ResultsContentItemComponent', () => {
       queryParams: { id: component.beachItem.id }
     });
   });
-  fit('should navigate to details when clicking on beach image', () => {
+  it('should navigate to details when clicking on beach image', () => {
     component.beachItem = beach;
     component.remainingPhotos = 2;
     fixture.detectChanges();

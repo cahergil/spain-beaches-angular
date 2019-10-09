@@ -9,10 +9,9 @@
   justify-content: center;
   grid-row-gap: 2rem;
   background-color: white;
-  z-index: -2; // for the video
+  // z-index: -2; // for the video
+  z-index: 1; // for the video
 }
-
-
 
 %video {
   position: absolute;
@@ -22,21 +21,25 @@
   z-index: -1;
   overflow: hidden;
   object-fit: cover;
-  mask-image: linear-gradient(to right,rgba(255,255,255,1),rgba(255,255,255,0.2),rgba(255,255,255,0.2));
-
+  mask-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.2)
+  );
 }
 .videoFull {
   height: 31vh;
-  @extend %video
+  @extend %video;
 }
 .video900 {
   height: 26vh;
-  @extend %video
+  @extend %video;
 }
 
 .video500 {
   height: 23vh;
-  @extend %video
+  @extend %video;
 }
 
 .titleWrapper {
@@ -48,13 +51,15 @@
 }
 .title {
   display: inline-block;
-  background: linear-gradient(to bottom right,rgba(255,255,255,0.7),rgba(255,255,255,1));
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 1)
+  );
   text-align: center;
   border-radius: 10px;
   padding: 5px;
   font-size: inherit;
-  box-shadow: 0 1.5rem 4rem rgba(0,0,0,.5);
-  -moz-box-shadow:0 1.5rem 4rem rgba(0,0,0,.5);
-
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.5);
 }
-

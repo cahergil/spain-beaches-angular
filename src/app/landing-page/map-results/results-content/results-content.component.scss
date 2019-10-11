@@ -5,10 +5,12 @@
     margin: 0 auto;
     font-size: 1.5rem;
     margin: 2rem;
-    color: #777
+    color: #777;
+    text-align: center;
   }
 
   &__content {
     padding: 2rem 0;
+    list-style: none;
   }
 }

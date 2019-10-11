@@ -1,11 +1,20 @@
 <section class="results">
-  <div class="results__showing"  fxLayout="column" fxLayoutAlign="center center">Showing {{filteredList.length}} beach(es) of {{list.length}}</div>
-  <div class="results__content" gdColumns="repeat(auto-fit, minmax(35rem, 1fr)" gdGap="3rem" cdkScrollable>
-    <div gdGridAlign="center" *ngFor="let item of filteredList">
-      <app-results-content-item
-      [beachItem]="item"
-      [remainingPhotos]="item.images.split(',').length -2"
-      ></app-results-content-item>
-    </div>
+  <div class="results__showing">
+    Showing <span>{{ filteredList.length }}</span> beach(es) of
+    <span>{{ list.length }}</span>
   </div>
+  <ul
+    class="results__content"
+    gdColumns="repeat(auto-fit, minmax(35rem, 1fr)"
+    gdGap="3rem"
+    cdkScrollable
+  >
+    <li gdGridAlign="center" *ngFor="let item of filteredList">
+      <app-results-content-item
+        [beachItem]="item"
+        [remainingPhotos]="item.images.split(',').length - 2"
+      >
+      </app-results-content-item>
+    </li>
+  </ul>
 </section>

@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, ChangeDetectorRef, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectorRef,
+  OnDestroy,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription, of } from 'rxjs';
@@ -17,7 +25,6 @@ import * as utils from '../../utils/utils';
   styleUrls: ['./search-filters.component.scss']
 })
 export class SearchFiltersComponent implements OnInit, OnDestroy {
-
   @Input() filters: fromSearchReducer.State;
 
   public stateServices = false;
@@ -34,13 +41,20 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
   public utils;
   positionSlider: number;
 
-  constructor(private ref: ChangeDetectorRef, private store: Store<fromApp.AppState>) { }
+  constructor(
+    private ref: ChangeDetectorRef,
+    private store: Store<fromApp.AppState>
+  ) {}
   ngOnInit() {
     this.utils = utils;
     this.inputControl = new FormControl(this.filters.searchText);
     this.beachLengthSliderControl = new FormControl(this.filters.beachLength);
-    this.hospitalDistanceControl = new FormControl(this.filters.hospitalDistance);
-    this.beachLengthSliderValue = utils.logPositionSlider(this.filters.beachLength);
+    this.hospitalDistanceControl = new FormControl(
+      this.filters.hospitalDistance
+    );
+    this.beachLengthSliderValue = utils.logPositionSlider(
+      this.filters.beachLength
+    );
     this.hospitalDistanceSliderValue = this.filters.hospitalDistance;
     this.onInputChanges();
     this.onLengthSliderChange();
@@ -53,24 +67,33 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
     } else if (name === 'blueFlag') {
       this.store.dispatch(new searchFiltersAction.SetBlueFlag(event.checked));
     } else if (name === 'surfingArea') {
-      this.store.dispatch(new searchFiltersAction.SetSurfingArea(event.checked));
+      this.store.dispatch(
+        new searchFiltersAction.SetSurfingArea(event.checked)
+      );
     } else if (name === 'beachBar') {
       this.store.dispatch(new searchFiltersAction.SetBeachBar(event.checked));
     } else if (name === 'nauticsRental') {
-      this.store.dispatch(new searchFiltersAction.SetNauticsRental(event.checked));
+      this.store.dispatch(
+        new searchFiltersAction.SetNauticsRental(event.checked)
+      );
     } else if (name === 'divingArea') {
       this.store.dispatch(new searchFiltersAction.SetDivingArea(event.checked));
     } else if (name === 'sunbedRental') {
-      this.store.dispatch(new searchFiltersAction.SetSunBedRental(event.checked));
+      this.store.dispatch(
+        new searchFiltersAction.SetSunBedRental(event.checked)
+      );
     } else if (name === 'beachUmbrellaRental') {
-      this.store.dispatch(new searchFiltersAction.SetUmbrellaBeachRental(event.checked));
+      this.store.dispatch(
+        new searchFiltersAction.SetUmbrellaBeachRental(event.checked)
+      );
     } else if (name === 'promenade') {
       this.store.dispatch(new searchFiltersAction.SetPromenade(event.checked));
     } else if (name === 'disabledPersons') {
-      this.store.dispatch(new searchFiltersAction.SetDisabledPersons(event.checked));
+      this.store.dispatch(
+        new searchFiltersAction.SetDisabledPersons(event.checked)
+      );
     }
-  }
-
+  };
 
   handleClick(name: string) {
     if (name === 'services') {
@@ -96,13 +119,13 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
   }
   setActiveTypeOfBeachMenu() {
     const classes = {
-      notActiveTypeOfBeach: !this.stateTypeOfBeach,
+      notActiveTypeOfBeach: !this.stateTypeOfBeach
     };
     return classes;
   }
   setActiveServicesMenu() {
     const classes = {
-      notActiveServices: !this.stateServices,
+      notActiveServices: !this.stateServices
     };
     return classes;
   }
@@ -118,27 +141,27 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
     this.store.dispatch(new searchFiltersAction.SetSearchText(''));
   }
   onOccupancyChange(value: string) {
-
     this.store.dispatch(new searchFiltersAction.SetOccupancy(value));
   }
 
   // change observables
   onInputChanges() {
-   this.subscriptionInputControl = this.inputControl.valueChanges
+    this.subscriptionInputControl = this.inputControl.valueChanges
       .pipe(
         debounceTime(500),
         distinctUntilChanged()
-      ).subscribe(val => {
+      )
+      .subscribe(val => {
         this.store.dispatch(new searchFiltersAction.SetSearchText(val));
       });
   }
   onLengthSliderChange() {
-
     this.beachLengthSliderControl.valueChanges
       .pipe(
         debounceTime(200),
         distinctUntilChanged()
-      ).subscribe(newValue => {
+      )
+      .subscribe(newValue => {
         const value = Math.round(utils.logarithmicSlider(newValue));
         console.log(value);
         this.store.dispatch(new searchFiltersAction.SetBeachLength(value));
@@ -146,9 +169,11 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
   }
   onHospitalDistanceSliderChange() {
     this.hospitalDistanceControl.valueChanges
-      .pipe(debounceTime(200)
-      ).subscribe(newValue => {
-        this.store.dispatch(new searchFiltersAction.SetHospitalDistance(newValue));
+      .pipe(debounceTime(200))
+      .subscribe(newValue => {
+        this.store.dispatch(
+          new searchFiltersAction.SetHospitalDistance(newValue)
+        );
       });
   }
 

@@ -5,7 +5,7 @@ import * as fromApp from '../../../store/app.reducers';
 import * as MapResultsFilterActions from '../results-filter/store/results-filter.actions';
 // import * as fromresultsFilter from './store/results-filter.reducers';
 import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -14,18 +14,16 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./results-filter.component.scss']
 })
 export class ResultsFilterComponent implements OnInit {
-
-
   @Input() region: string;
   @Input() count: number;
   @Input() select: string;
   @Input() input: string;
   inputControl: FormControl;
-  constructor(private store: Store<fromApp.AppState>) { }
+
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit() {
     this.inputControl = new FormControl(this.input);
-    // this.resultsFilterState = this.store.select('mapResultsFilter');
     this.onInputChanges();
   }
 
@@ -34,18 +32,13 @@ export class ResultsFilterComponent implements OnInit {
     this.store.dispatch(new MapResultsFilterActions.SetMapFilterText(''));
   }
   onInputChanges() {
-    this.inputControl.valueChanges.pipe(
-      debounceTime(500),
-      distinctUntilChanged()
-    ).subscribe(val => {
-      this.store.dispatch(new MapResultsFilterActions.SetMapFilterText(val));
-    });
+    this.inputControl.valueChanges
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged()
+      )
+      .subscribe(val => {
+        this.store.dispatch(new MapResultsFilterActions.SetMapFilterText(val));
+      });
   }
-  // onInputChange() {
-  //   console.log('input:', this.inputControl.value);
-  //   // console.log('input:', value);
-  //   this.store.dispatch(new MapResultsFilterActions.SetMapFilterText(this.inputControl.value));
-
-  // }
-
 }

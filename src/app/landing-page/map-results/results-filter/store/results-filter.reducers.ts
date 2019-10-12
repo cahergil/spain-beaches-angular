@@ -10,7 +10,10 @@ const initialState: State = {
   input: ''
 };
 
-export function resultsFilterReducer(state = initialState, action: ResultsFilterActions.ResultsFilterActions) {
+export function resultsFilterReducer(
+  state = initialState,
+  action: ResultsFilterActions.ResultsFilterActions
+) {
   switch (action.type) {
     case ResultsFilterActions.SET_MAP_FILTERS_SELECT:
       return {
@@ -22,6 +25,7 @@ export function resultsFilterReducer(state = initialState, action: ResultsFilter
         ...state,
         input: action.payload
       };
-    default: return state;
+    default:
+      return state;
   }
 }

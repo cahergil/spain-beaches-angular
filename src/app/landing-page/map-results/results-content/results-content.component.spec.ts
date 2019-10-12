@@ -11,7 +11,7 @@ import { By } from '@angular/platform-browser';
 import { ResultsContentItemComponent } from './results-content-item/results-content-item.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-fdescribe('ResultsContentComponent', () => {
+describe('ResultsContentComponent', () => {
   let component: ResultsContentComponent;
   let fixture: ComponentFixture<ResultsContentComponent>;
   let regionalBeachesList: Playa[];

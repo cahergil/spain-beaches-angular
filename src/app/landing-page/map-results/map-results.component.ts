@@ -1,12 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import * as fromApp from '../../store/app.reducers';
 import { Store } from '@ngrx/store';
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Playa } from 'src/app/playas.model';
 import { tap, flatMap, map, filter } from 'rxjs/operators';
-import { ResultsFilterComponent } from './results-filter/results-filter.component';
 
 @Component({
   selector: 'app-map-results',

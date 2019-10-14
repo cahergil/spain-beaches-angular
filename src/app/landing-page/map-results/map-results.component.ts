@@ -1,77 +1,90 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import * as fromApp from '../../store/app.reducers';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { Playa } from 'src/app/playas.model';
-
+import { tap, flatMap, map, filter } from 'rxjs/operators';
+import { ResultsFilterComponent } from './results-filter/results-filter.component';
 
 @Component({
   selector: 'app-map-results',
   templateUrl: './map-results.component.html',
   styleUrls: ['./map-results.component.scss']
 })
-export class MapResultsComponent implements OnInit, OnDestroy {
-
-  public region: string;
+export class MapResultsComponent implements OnInit {
+  public region = '';
+  private prevRegion = '';
   private REGION = 'region';
-
-  // private beachesListObservable: Observable<{beaches: Playa[]}>;
-  private subscription: Subscription;
   public regionList: Playa[] = [];
   public filteredRegionList: Playa[] = [];
   public select: string;
-  public text: string;
+  public input: string;
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<fromApp.AppState>,
-    ) {
-
+    private store: Store<fromApp.AppState>
+  ) {
+    // https://stackoverflow.com/questions/41138081/do-i-have-to-unsubscribe-from-activatedroute-e-g-params-observables
     this.route.params.subscribe(params => {
       if (params[this.REGION]) {
+        // better place it here, else params[this.REGION] gives unexpected results, don't know why
         this.region = params[this.REGION];
-        // console.log(this.region);
-        this.subscription = this.store.select('beachesList')
-          .subscribe(results => {
-            this.regionList = results.beaches.filter(el => el.comunidad_autonoma === this.region
-            );
-            this.store.select('mapResultsFilter').subscribe(data => {
-              // console.log(data);
-
-              if (params[this.REGION] !== this.region) {
+        this.store
+          .select(state => state.mapResultsFilter)
+          .pipe(
+            tap(filters => {
+              if (this.region !== this.prevRegion) {
                 this.select = 'termino_municipal';
-                this.text = '';
+                this.input = '';
               } else {
-                this.select = data.select;
-                this.text = data.input;
+                this.select = filters.select;
+                this.input = filters.input;
               }
-              if (!this.text.trim()) {
-                this.filteredRegionList = this.regionList;
-              } else {
-                const regex = new RegExp('' + this.text + '', 'i');
-                this.filteredRegionList = this.regionList.filter(beach => beach[`${this.select}`].match(regex));
-              }
-
-            });
-        });
-
+              this.prevRegion = this.region;
+            }),
+            flatMap(filters => this.getBeaches())
+          )
+          .subscribe(beaches => {
+            this.filteredRegionList = beaches;
+          });
       }
     });
-
   }
+  getBeaches(): Observable<Playa[]> {
+    return this.store
+      .select(state => state.beachesList.beaches)
+      .pipe(
+        filter(beachesList => beachesList.length > 0),
+        // At this point, the obs emits a SINGLE array of items
+        // tap(items => console.log(items)),
+        map(beachesList =>
+          beachesList.filter(beach => beach.comunidad_autonoma === this.region)
+        ),
+        tap(beachesList => (this.regionList = beachesList)),
+        // I flatten the array so that the obs emits each item INDIVIDUALLY
+        // from concatAll on we could use filter to filter individually and
+        // after use toArray if we want again the array observable, but
+        // toArray requires the stream to terminate(we could use for that take)
+        // concatAll(),
+        // At this point, the obs emits each item individually
+        // tap(items => console.log(items)),
+        map(beachesList => {
+          if (!this.input.trim()) {
+            return beachesList;
+          } else {
+            const regex = new RegExp('' + this.input + '', 'i');
+            return beachesList.filter(beach =>
+              beach[`${this.select}`].match(regex)
+            );
+          }
+        })
+      );
+  }
+
   ngOnInit() {
     const resultId = document.getElementById('results');
     resultId.scrollIntoView({ behavior: 'smooth' });
-
   }
-
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
-
 }

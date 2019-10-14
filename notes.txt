@@ -1,3 +1,140 @@
 1) ng build --prod --base-href "https://cahergil.github.io/spain-beaches-angular/"
 
 2) ngh --dir=dist/playas-angular
+
+
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { ActivatedRoute } from '@angular/router';
+import * as fromApp from '../../store/app.reducers';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { Playa } from 'src/app/playas.model';
+
+
+@Component({
+  selector: 'app-map-results',
+  templateUrl: './map-results.component.html',
+  styleUrls: ['./map-results.component.scss']
+})
+export class MapResultsComponent implements OnInit, OnDestroy {
+
+  public region: string;
+  private REGION = 'region';
+
+  // private beachesListObservable: Observable<{beaches: Playa[]}>;
+  private subscription: Subscription;
+  public regionList: Playa[] = [];
+  public filteredRegionList: Playa[] = [];
+  public select: string;
+  public input: string;
+
+  constructor(
+    private route: ActivatedRoute,
+    private store: Store<fromApp.AppState>,
+    ) {
+
+    this.route.params.subscribe(params => {
+      if (params[this.REGION]) {
+        this.region = params[this.REGION];
+        this.subscription = this.store.select('beachesList')
+          .subscribe(results => {
+            this.regionList = results.beaches.filter(el => el.comunidad_autonoma === this.region
+            );
+            this.store.select('mapResultsFilter').subscribe(data => {
+              if (params[this.REGION] !== this.region) {
+                this.select = 'termino_municipal';
+                this.input = '';
+              } else {
+                this.select = data.select;
+                this.input = data.input;
+              }
+              if (!this.input.trim()) {
+                this.filteredRegionList = this.regionList;
+              } else {
+                const regex = new RegExp('' + this.input + '', 'i');
+                this.filteredRegionList = this.regionList.filter(beach => beach[`${this.select}`].match(regex));
+              }
+
+            });
+        });
+
+      }
+    });
+
+  }
+  ngOnInit() {
+    const resultId = document.getElementById('results');
+    resultId.scrollIntoView({ behavior: 'smooth' });
+
+  }
+
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+}
+
+
+ constructor(
+    private route: ActivatedRoute,
+    private store: Store<fromApp.AppState>
+  ) {
+    this.route.params.subscribe(params => {
+      if (params[this.REGION]) {
+        this.region = params[this.REGION];
+        this.store
+          .select(state => state.mapResultsFilter)
+          .pipe(
+            tap(data => {
+              if (params[this.REGION] !== this.region) {
+                this.select = 'termino_municipal';
+                this.input = '';
+              } else {
+                console.log(data.input);
+                this.select = data.select;
+                this.input = data.input;
+              }
+            }),
+            flatMap(data => this.filterArray(data)),
+            scan((acc: any, val: any) => [...acc, val], [])
+          )
+          .subscribe(beaches => {
+            this.filteredRegionList = beaches;
+          });
+      }
+    });
+
+  }
+  filterArray(data: { input: string; select: string }): Observable<Playa> {
+    console.log(data);
+    console.log(this.region);
+    return this.store
+      .select(state => state.beachesList.beaches)
+      .pipe(
+        // take: so that it completes -> requirement for toArray
+        // 2: because the 1 is []
+
+        // At this point, the obs emits a SINGLE array of items
+        // tap(items => console.log(items)),
+        map(beachesList =>
+          beachesList.filter(beach => beach.comunidad_autonoma === this.region)
+        ),
+        tap(beachesList => (this.regionList = beachesList)),
+        // I flatten the array so that the obs emits each item INDIVIDUALLY
+        concatAll(),
+        // At this point, the obs emits each item individually
+        // tap(items => console.log(items)),
+        filter(beach => {
+          if (!data.input.trim()) {
+            return beach;
+          } else {
+            const regex = new RegExp('' + data.input + '', 'i');
+            return beach[`${data.select}`].match(regex);
+          }
+        })
+      );
+  }

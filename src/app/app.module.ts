@@ -15,7 +15,6 @@ import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AngularFittextModule } from 'angular-fittext';
 
-
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -55,7 +54,6 @@ import { SearchFiltersMobileComponent } from './search/search-filters-mobile/sea
 import { DrawerComponent } from './search/search-filters-mobile/drawer/drawer.component';
 import { FeatureItemComponent } from './landing-page/map-results/results-content/results-content-item/feature-item/feature-item.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,9 +91,6 @@ import { FeatureItemComponent } from './landing-page/map-results/results-content
     SearchFiltersMobileComponent,
     DrawerComponent,
     FeatureItemComponent
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -108,19 +103,19 @@ import { FeatureItemComponent } from './landing-page/map-results/results-content
     AmChartsModule,
     HttpClientModule,
     StoreModule.forRoot(reducers),
-    !environment.production ? StoreDevtoolsModule.instrument({
-      maxAge: 10
-    }) : [],
+    !environment.production
+      ? StoreDevtoolsModule.instrument({
+          maxAge: 10
+        })
+      : [],
     NgxGalleryModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBzE15BZUN0Xhhx0OzkMKNlaII7QX4p6GU'
     }),
     AgmSnazzyInfoWindowModule,
     AngularFittextModule
-
-
   ],
   providers: [AmChartsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

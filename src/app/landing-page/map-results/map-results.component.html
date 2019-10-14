@@ -3,15 +3,9 @@
     [region]="region"
     [count]="regionList.length"
     [select]="select"
-    [input]="text"
-    >
-
+    [input]="input"
+  >
   </app-results-filter>
 
-  <app-results-content
-    [list]="filteredRegionList"
-  >
-
-  </app-results-content>
-
+  <app-results-content [list]="filteredRegionList"> </app-results-content>
 </section>

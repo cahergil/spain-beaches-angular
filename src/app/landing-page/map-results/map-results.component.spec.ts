@@ -18,7 +18,7 @@ class ActivatedRouteStub {
   }
 }
 
-fdescribe('MapResultsComponent', () => {
+describe('MapResultsComponent', () => {
   let component: MapResultsComponent;
   let fixture: ComponentFixture<MapResultsComponent>;
   let list: Playa[];

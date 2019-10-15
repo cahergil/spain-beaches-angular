@@ -5,7 +5,7 @@ import * as fromApp from '../../store/app.reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Playa } from 'src/app/playas.model';
-import { tap, flatMap, map, filter } from 'rxjs/operators';
+import { tap, flatMap, map, filter, delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-map-results',
@@ -14,7 +14,7 @@ import { tap, flatMap, map, filter } from 'rxjs/operators';
 })
 export class MapResultsComponent implements OnInit {
   public region = '';
-  private prevRegion = '';
+  public prevRegion = '';
   private REGION = 'region';
   public regionList: Playa[] = [];
   public filteredRegionList: Playa[] = [];
@@ -31,7 +31,7 @@ export class MapResultsComponent implements OnInit {
         // better place it here, else params[this.REGION] gives unexpected results, don't know why
         this.region = params[this.REGION];
         this.store
-          .select(state => state.mapResultsFilter)
+          .select('mapResultsFilter')
           .pipe(
             tap(filters => {
               if (this.region !== this.prevRegion) {
@@ -52,34 +52,40 @@ export class MapResultsComponent implements OnInit {
     });
   }
   getBeaches(): Observable<Playa[]> {
-    return this.store
-      .select(state => state.beachesList.beaches)
-      .pipe(
-        filter(beachesList => beachesList.length > 0),
-        // At this point, the obs emits a SINGLE array of items
-        // tap(items => console.log(items)),
-        map(beachesList =>
-          beachesList.filter(beach => beach.comunidad_autonoma === this.region)
-        ),
-        tap(beachesList => (this.regionList = beachesList)),
-        // I flatten the array so that the obs emits each item INDIVIDUALLY
-        // from concatAll on we could use filter to filter individually and
-        // after use toArray if we want again the array observable, but
-        // toArray requires the stream to terminate(we could use for that take)
-        // concatAll(),
-        // At this point, the obs emits each item individually
-        // tap(items => console.log(items)),
-        map(beachesList => {
-          if (!this.input.trim()) {
-            return beachesList;
-          } else {
-            const regex = new RegExp('' + this.input + '', 'i');
-            return beachesList.filter(beach =>
-              beach[`${this.select}`].match(regex)
-            );
-          }
-        })
-      );
+    return (
+      this.store
+        .select('beachesList', 'beaches')
+        // .select(state => state.beachesList.beaches)
+        .pipe(
+          // tap(beachesList => console.log('beaches', beachesList)),
+          filter(beachesList => beachesList.length > 0),
+          // At this point, the obs emits a SINGLE array of items
+          // tap(items => console.log(items)),
+          map(beachesList =>
+            beachesList.filter(
+              beach => beach.comunidad_autonoma === this.region
+            )
+          ),
+          tap(beachesList => (this.regionList = beachesList)),
+          // I flatten the array so that the obs emits each item INDIVIDUALLY
+          // from concatAll on we could use filter to filter individually and
+          // after use toArray if we want again the array observable, but
+          // toArray requires the stream to terminate(we could use for that take)
+          // concatAll(),
+          // At this point, the obs emits each item individually
+          // tap(items => console.log(items)),
+          map(beachesList => {
+            if (!this.input.trim()) {
+              return beachesList;
+            } else {
+              const regex = new RegExp('' + this.input + '', 'i');
+              return beachesList.filter(beach =>
+                beach[`${this.select}`].match(regex)
+              );
+            }
+          })
+        )
+    );
   }
 
   ngOnInit() {

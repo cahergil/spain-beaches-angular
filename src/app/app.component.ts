@@ -14,26 +14,24 @@ export class AppComponent implements OnInit {
   private list: Playa[] = [];
   private jsonUrl = './assets/playas.json';
 
-  constructor(private httpClient: HttpClient, private store: Store<fromLandingPageReducer.State>) { }
+  constructor(
+    private httpClient: HttpClient,
+    private store: Store<fromLandingPageReducer.State>
+  ) {}
 
   ngOnInit() {
-
-
-    this.httpClient.get(this.jsonUrl).subscribe((response: any) => {
-
-      const keys = Object.keys(response);
-      keys.forEach(element => {
-        const obj = response[element];
-        this.list.push(obj);
-      });
-      this.store.dispatch(new fromActions.SetBeaches(this.list));
-
-    }, err => {
-      console.log(err);
-    });
-
-
-
-
+    this.httpClient.get(this.jsonUrl).subscribe(
+      (response: any) => {
+        const keys = Object.keys(response);
+        keys.forEach(element => {
+          const obj = response[element];
+          this.list.push(obj);
+        });
+        this.store.dispatch(new fromActions.SetBeaches(this.list));
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }

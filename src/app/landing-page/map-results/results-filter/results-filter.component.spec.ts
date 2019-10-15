@@ -15,7 +15,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { reducers } from '../../../store/app.reducers';
 import { Playa } from 'src/app/playas.model';
 
-fdescribe('ResultsFilterComponent', () => {
+describe('ResultsFilterComponent', () => {
   let component: ResultsFilterComponent;
   let fixture: ComponentFixture<ResultsFilterComponent>;
   let count: number;

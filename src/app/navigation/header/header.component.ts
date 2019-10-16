@@ -1,12 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
-import { Location } from '@angular/common';
 import { filter } from 'rxjs/operators';
-
-import * as fromApp from '../../store/app.reducers';
-import * as regionMapActions from '../../landing-page/map/store/map.actions';
 
 @Component({
   selector: 'app-header',
@@ -17,10 +12,7 @@ export class HeaderComponent implements OnInit {
   public navigationVisible$: Observable<{ navigationVisible: boolean }>;
   @Output() sidenavToggle = new EventEmitter<void>();
   public isDetails = false;
-  constructor(
-    private store: Store<fromApp.AppState>,
-    private router: Router // private location: Location
-  ) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     // solution 1

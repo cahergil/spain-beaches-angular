@@ -13,7 +13,7 @@ class MockRouter {
   public events = of(new NavigationEnd(0, '/details', '/details'));
 }
 
-fdescribe('HeaderComponent', () => {
+describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   beforeEach(async(() => {
@@ -115,7 +115,7 @@ fdescribe('HeaderComponent', () => {
     // expect(component.sidenavToggle.emit).toHaveBeenCalled();
     // expect(component.sidenavToggle.emit).toHaveBeenCalledWith();
   });
-  fit('shoud test isDetails equals true when visiting details page', async () => {
+  it('shoud test isDetails equals true when visiting details page', async () => {
     fixture.detectChanges();
     await fixture.whenStable();
     expect(component.isDetails).toEqual(true);

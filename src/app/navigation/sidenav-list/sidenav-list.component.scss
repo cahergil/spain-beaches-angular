@@ -1,11 +1,13 @@
 @import '../../../sass/styles.scss';
 @import '../../../theme_beaches.scss';
 
-.nav-caption {
-  display: inline-block;
-  padding-left: 16px;
+// .nav-caption {
+//   display: inline-block;
+//   padding-left: 16px;
+// }
+mat-nav-list {
+  min-width: 20rem;
 }
-
 /* because <a> have 16px and button by default 14px */
 // button {
 //   font-size: 16px;
@@ -13,7 +15,7 @@
 
 /* normal fa style is 16px(at least for this icon) mat-icon is 24px */
 .fa-lg {
-   font-size: 24px;
+  font-size: 24px;
 }
 
 /* so that fontawesome aligns horizontally with the span, would be better perhaps to apply
@@ -23,15 +25,27 @@ mat-icon {
 }
 
 .active-item {
-   color: #d4ac16 !important;
+  color: #d4ac16 !important;
 }
 
+// .drawer-item {
+//   color: #fff !important;
+//   font-size: 1.7rem;
+//   &:hover,
+//   &:active {
+//     color: #d4ac16 !important;
+//   }
+// }
 
-.drawer-item {
-  color: #fff !important;
+.item {
   font-size: 1.7rem;
-  &:hover, &:active {
+  &:hover,
+  &:active {
     color: #d4ac16 !important;
+  }
+}
 
- }
+a {
+  text-decoration: none;
+  color: white !important;
 }

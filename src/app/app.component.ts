@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import * as fromLandingPageReducer from './landing-page/store/landing-page.reducers';
 import * as fromActions from './landing-page/store/landing-page.actions';
 import { Playa } from './playas.model';
+import { BeachesService } from './beaches.service';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { MatSidenav } from '@angular/material/sidenav';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,23 +14,19 @@ import { Playa } from './playas.model';
 })
 export class AppComponent implements OnInit {
   title = 'playas-angular';
-  private list: Playa[] = [];
   private jsonUrl = './assets/playas.json';
+  // testing
+  @ViewChild('sidenav') sidenav: MatSidenav;
 
   constructor(
-    private httpClient: HttpClient,
+    private beachesService: BeachesService,
     private store: Store<fromLandingPageReducer.State>
   ) {}
 
   ngOnInit() {
-    this.httpClient.get(this.jsonUrl).subscribe(
-      (response: any) => {
-        const keys = Object.keys(response);
-        keys.forEach(element => {
-          const obj = response[element];
-          this.list.push(obj);
-        });
-        this.store.dispatch(new fromActions.SetBeaches(this.list));
+    this.beachesService.getBeachesFromJson(this.jsonUrl).subscribe(
+      (response: Playa[]) => {
+        this.store.dispatch(new fromActions.SetBeaches(response));
       },
       err => {
         console.log(err);

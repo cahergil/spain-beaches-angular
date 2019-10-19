@@ -63,7 +63,7 @@ const routes: Routes = [
   }
 ];
 
-fdescribe('SidenavListComponent', () => {
+describe('SidenavListComponent', () => {
   let component: SidenavListComponent;
   let fixture: ComponentFixture<SidenavListComponent>;
 

@@ -48,7 +48,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent }
 ];
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let beachesList: Playa[];
@@ -158,7 +158,7 @@ fdescribe('AppComponent', () => {
       expect(component.sidenav.opened).toBe(true);
     }
   });
-  fit('can navigate to spain-map', fakeAsync(() => {
+  it('can navigate to spain-map', fakeAsync(() => {
     const router: Router = TestBed.get(Router);
     const location = TestBed.get(Location);
     fixture.ngZone.run(() => {
@@ -170,7 +170,7 @@ fdescribe('AppComponent', () => {
       expect(location.path()).toBe('/spain-map');
     });
   }));
-  fit('can navigate to search', fakeAsync(() => {
+  it('can navigate to search', fakeAsync(() => {
     const router: Router = TestBed.get(Router);
     const location = TestBed.get(Location);
     fixture.ngZone.run(() => {
@@ -182,7 +182,7 @@ fdescribe('AppComponent', () => {
       expect(location.path()).toBe('/search');
     });
   }));
-  fit('can navigate to about', fakeAsync(() => {
+  it('can navigate to about', fakeAsync(() => {
     const router: Router = TestBed.get(Router);
     const location = TestBed.get(Location);
     fixture.ngZone.run(() => {

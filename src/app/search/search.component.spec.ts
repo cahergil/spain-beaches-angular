@@ -11,11 +11,17 @@ import { SearchFiltersMobileComponent } from './search-filters-mobile/search-fil
 import { DrawerComponent } from './search-filters-mobile/drawer/drawer.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from '../store/app.reducers';
+import { Playa } from '../playas.model';
 
 fdescribe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
 
+  // beforeAll(async () => {
+  //   const response = await fetch('../../assets/playas.json');
+  //   const list: Playa[] = await response.json();
+
+  // });
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [

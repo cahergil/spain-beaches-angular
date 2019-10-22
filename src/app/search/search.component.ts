@@ -13,7 +13,8 @@ import {
   startWith,
   tap,
   concatMap,
-  filter
+  filter,
+  flatMap
 } from 'rxjs/operators';
 @Component({
   selector: 'app-search',
@@ -33,6 +34,21 @@ export class SearchComponent implements OnInit, OnDestroy {
   public video500 = false;
   public video900 = false;
 
+  private mappings = {
+    nudism: 'nudismo',
+    flueFlag: 'bandera_azul',
+    surf: 'zona_surf',
+    beachBar: 'establecimiento_comida',
+    nautics: 'alquiler_nauticos',
+    submarinism: 'submarinismo',
+    sunbedRental: 'alquiler_hamacas',
+    beachUmbrellaRental: 'alquiler_sombrillas',
+    disabledPersons: 'acceso_discapacitados',
+    promenade: 'paseo_maritimo',
+    occupancy: 'grado_ocupacion',
+    hospitalDistance: 'distancia_hospital',
+    beachLength: 'longitud'
+  };
   constructor(private store: Store<fromApp.AppState>) {
     this.catchMobileWidth();
   }
@@ -70,67 +86,68 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.subscription = this.store
       .select('searchFilters')
       .pipe(
+        tap(() => (this.filterObject = {})),
         tap((obj: fromSearchReducer.State) => {
           this.filters = obj;
           if (this.filters.nudism) {
-            this.filterObject['nudismo'] = this.utils.translateYesNoIntoSpanish(
-              this.filters.nudism
-            );
+            this.filterObject[
+              this.mappings.nudism
+            ] = this.utils.translateYesNoIntoSpanish(this.filters.nudism);
           }
           if (this.filters.blueFlag) {
             this.filterObject[
-              'bandera_azul'
+              this.mappings.flueFlag
             ] = this.utils.translateYesNoIntoSpanish(this.filters.blueFlag);
           }
           if (this.filters.surfingArea) {
             this.filterObject[
-              'zona_surf'
+              this.mappings.surf
             ] = this.utils.translateYesNoIntoSpanish(this.filters.surfingArea);
           }
           if (this.filters.beachBar) {
             this.filterObject[
-              'establecimiento_comida'
+              this.mappings.beachBar
             ] = this.utils.translateYesNoIntoSpanish(this.filters.beachBar);
           }
           if (this.filters.nauticsRental) {
             this.filterObject[
-              'alquiler_nauticos'
+              this.mappings.nautics
             ] = this.utils.translateYesNoIntoSpanish(
               this.filters.nauticsRental
             );
           }
           if (this.filters.divingArea) {
             this.filterObject[
-              'submarinismo'
+              this.mappings.submarinism
             ] = this.utils.translateYesNoIntoSpanish(this.filters.divingArea);
           }
           if (this.filters.sunbedRental) {
             this.filterObject[
-              'alquiler_hamacas'
+              this.mappings.sunbedRental
             ] = this.utils.translateYesNoIntoSpanish(this.filters.sunbedRental);
           }
           if (this.filters.beachUmbrellaRental) {
             this.filterObject[
-              'alquiler_sombrillas'
+              this.mappings.beachUmbrellaRental
             ] = this.utils.translateYesNoIntoSpanish(
               this.filters.beachUmbrellaRental
             );
           }
           if (this.filters.disabledPersons) {
             this.filterObject[
-              'acceso_discapacitados'
+              this.mappings.disabledPersons
             ] = this.utils.translateYesNoIntoSpanish(
               this.filters.disabledPersons
             );
           }
           if (this.filters.promenade) {
             this.filterObject[
-              'paseo_maritimo'
+              this.mappings.promenade
             ] = this.utils.translateYesNoIntoSpanish(this.filters.promenade);
           }
           if (this.filters.occupancy !== 'All') {
             this.filterObject[
-              'grado_ocupacion'
+              this.mappings.occupancy
             ] = this.utils.translateOccupancyIntoSpanish(
               this.filters.occupancy
             );
@@ -142,21 +159,22 @@ export class SearchComponent implements OnInit, OnDestroy {
           }
           if (this.filters.hospitalDistance) {
             this.filterObject[
-              'distancia_hospital'
+              this.mappings.hospitalDistance
             ] = this.filters.hospitalDistance;
           }
           if (this.filters.beachLength) {
-            this.filterObject['longitud'] = this.filters.beachLength;
+            this.filterObject[
+              this.mappings.beachLength
+            ] = this.filters.beachLength;
           }
         }),
-        concatMap(() => this.applyFilters(this.filterObject))
+        flatMap(() => this.applyFiltersToBeachList(this.filterObject))
       )
       .subscribe(filteredList => (this.filteredList = filteredList));
   }
 
-  applyFilters(filterObject): Observable<Playa[]> {
+  applyFiltersToBeachList(filterObject): Observable<Playa[]> {
     return this.store.select('beachesList', 'beaches').pipe(
-      filter(beaches => beaches.length > 0),
       map(beaches => {
         return beaches.filter((beach: Playa) => {
           const keys = Object.keys(filterObject);

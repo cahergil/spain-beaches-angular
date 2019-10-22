@@ -16,9 +16,7 @@ export interface State {
   beachLength: number;
   selectText: string;
   searchText: string;
-
 }
-
 
 const initialState: State = {
   nudism: false,
@@ -38,10 +36,10 @@ const initialState: State = {
   searchText: ''
 };
 
-
-
-export function searchFiltersReducer(state = initialState, actions: searchFiltersActions.SearchFiltersActions) {
-
+export function searchFiltersReducer(
+  state = initialState,
+  actions: searchFiltersActions.SearchFiltersActions
+) {
   switch (actions.type) {
     case searchFiltersActions.SET_NUDISM:
       return {
@@ -137,6 +135,7 @@ export function searchFiltersReducer(state = initialState, actions: searchFilter
         selectText: 'termino_municipal',
         searchText: ''
       };
-    default: return state;
+    default:
+      return state;
   }
-};
+}
